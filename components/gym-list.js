@@ -11,8 +11,8 @@ export default function GymList(props) {
     <ul style={{ padding: 0 }}>
       {items.map((gym) => (
         <GymItem
-          key={gym.id}
-          id={gym.id}
+          key={gym._id}
+          id={gym._id}
           name={gym.name}
           description={gym.description}
           image={gym.image}

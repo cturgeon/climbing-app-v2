@@ -25,8 +25,14 @@ export async function deleteGym(client, collection, id) {
   return;
 }
 
-export async function getGymById(client, collecion, id) {
+export async function getGymById(client, collection, id) {
   const db = client.db();
   const gymData = await db.collection(collection).find(id);
   return gymData;
+}
+
+export async function getGymIds(client, collection) {
+  const db = client.db();
+  const result = await db.collection(collection).distinct("_id", {}, {});
+  return result;
 }

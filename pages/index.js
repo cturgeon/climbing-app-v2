@@ -27,7 +27,7 @@ export async function getStaticProps() {
     const gymData = await getAllGymData(client, "gym-data", { _id: -1 });
     return {
       props: {
-        gymData: gymData,
+        gymData: JSON.parse(JSON.stringify(gymData)),
       },
     };
   } catch (error) {

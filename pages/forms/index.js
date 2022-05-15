@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import { useRef } from "react";
 
 async function sendFormData(newGymData) {
-  const response = await fetch("/api/newGymData", {
+  const response = await fetch("/api/gymData", {
     method: "POST",
     body: JSON.stringify(newGymData),
     headers: {
