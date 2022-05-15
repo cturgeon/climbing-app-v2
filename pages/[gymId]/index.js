@@ -1,11 +1,16 @@
 import { Fragment } from "react";
 
-import { getAllGyms, getGymById } from "../../helpers/api-util";
+import {
+  connectToDatabase,
+  getGymIds,
+  getGymById,
+} from "../../helpers/db-util";
 
 import GymHeader from "../../components/ui/gym-header";
 import WallList from "../../components/wall-list";
 
 import { Group } from "@mantine/core";
+import { ObjectId } from "mongodb";
 
 export default function SpecificGym(props) {
   const gym = props.gym;
@@ -17,8 +22,8 @@ export default function SpecificGym(props) {
     <Group direction="column" position="center">
       <Fragment>
         <GymHeader
-          key={gym.id}
-          id={gym.id}
+          key={gym._id}
+          id={gym._id}
           name={gym.name}
           description={gym.description}
           image={gym.image}
@@ -32,20 +37,39 @@ export default function SpecificGym(props) {
 
 export async function getStaticProps(context) {
   const gymId = context.params.gymId;
-  const gymData = await getGymById(gymId);
-  return {
-    props: {
-      gym: gymData,
-    },
-  };
+  let client;
+  try {
+    client = await connectToDatabase();
+    const gymData = await getGymById(client, "gym-data", {
+      _id: ObjectId(gymId),
+    });
+    return {
+      props: {
+        gym: JSON.parse(JSON.stringify(gymData)),
+      },
+    };
+  } catch (error) {
+    client.close();
+    console.error(error);
+    return;
+  }
 }
 
 export async function getStaticPaths() {
-  const gymData = await getAllGyms();
-  // make sure to return the id that matches the file path. Here for ex. is [gymId]
-  const paths = gymData.map((gym) => ({ params: { gymId: gym.id } }));
-  return {
-    paths: paths,
-    fallback: "blocking",
-  };
+  let client;
+  try {
+    client = await connectToDatabase();
+    const gymData = await getGymIds(client, "gym-data");
+    const gymIds = JSON.parse(JSON.stringify(gymData));
+    const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
+    client.close();
+    return {
+      paths: paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    client.close();
+    console.error(error);
+    return;
+  }
 }

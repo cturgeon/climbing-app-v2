@@ -27,7 +27,7 @@ export async function deleteGym(client, collection, id) {
 
 export async function getGymById(client, collection, id) {
   const db = client.db();
-  const gymData = await db.collection(collection).find(id);
+  const gymData = await db.collection(collection).findOne(id);
   return gymData;
 }
 
