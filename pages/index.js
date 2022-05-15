@@ -1,7 +1,7 @@
 import { Text, Group } from "@mantine/core";
 import { Fragment } from "react";
 
-import { getAllGyms } from "../helpers/api-util";
+import { connectToDatabase, getAllGymData } from "../helpers/db-util";
 
 import GymList from "../components/gym-list";
 
@@ -21,10 +21,17 @@ export default function Home(props) {
 
 // pre-render since there aren't many gyms to show and they don't change very often
 export async function getStaticProps() {
-  const gymData = await getAllGyms();
-  return {
-    props: {
-      gymData: gymData,
-    },
-  };
+  let client;
+  try {
+    client = await connectToDatabase();
+    const gymData = await getAllGymData(client, "gym-data", { _id: -1 });
+    return {
+      props: {
+        gymData: gymData,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return;
+  }
 }

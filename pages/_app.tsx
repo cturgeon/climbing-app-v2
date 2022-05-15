@@ -43,9 +43,12 @@ export default function App(props: AppProps) {
             width={{ sm: 200, lg: 300 }}
           >
             <Aside.Section grow >
-              <Text>View Home Gym</Text>
-              <Text>View Climb Logs</Text>
-              <Text>Settings</Text>
+              <SimpleGrid>
+                <Button component='a' href='/forms'>Add a Gym</Button>
+                <Button>View Home Gym</Button>
+                <Button>View Climb Logs</Button>
+                <Button>Settings</Button>
+              </SimpleGrid>
             </Aside.Section>
             <Aside.Section>{<Text>Log in/out</Text>}</Aside.Section>
           </Aside>

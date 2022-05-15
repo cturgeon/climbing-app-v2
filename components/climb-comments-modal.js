@@ -23,7 +23,6 @@ export default function ClimbCommentsModal(props) {
           />
         }
       </Modal>
-
       <Group position="center">
         <Button
           variant="light"
