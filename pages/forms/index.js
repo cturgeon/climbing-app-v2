@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import { useRef } from "react";
 
 async function sendFormData(newGymData) {
-  const response = await fetch("/api/new-gym-data", {
+  const response = await fetch("/api/newGymData", {
     method: "POST",
     body: JSON.stringify(newGymData),
     headers: {
@@ -70,7 +70,7 @@ export default function GymFormPage() {
           <label>Gym Image:</label>
           <input type="text" name="image" ref={enteredGymImage} />
         </div>
-        <Button>Add</Button>
+        <Button type="submit">Add</Button>
       </form>
     </div>
   );
