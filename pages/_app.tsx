@@ -44,7 +44,7 @@ export default function App(props: AppProps) {
           >
             <Aside.Section grow >
               <SimpleGrid>
-                <Button component='a' href='/forms'>Add a Gym</Button>
+                <Button component="a" href="/admin">Gym Admin Page</Button>
                 <Button>View Home Gym</Button>
                 <Button>View Climb Logs</Button>
                 <Button>Settings</Button>
