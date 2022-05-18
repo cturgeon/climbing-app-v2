@@ -1,6 +1,7 @@
-import { getAllGyms, getGymById } from "../../../helpers/api-util";
+import { connectToDatabase, getGymById } from "../../../helpers/db-util";
 import ClimbList from "../../../components/climb-list";
 import { Title } from "@mantine/core";
+import { ObjectId } from "mongodb";
 
 export default function SpecificWall(props) {
   const { wall } = props;
@@ -22,8 +23,11 @@ export default function SpecificWall(props) {
 // we don't care to pre-render these walls, the data is not that important
 // however this data never really changes. Would be nice to pre-render to feel a bit snappier
 export async function getServerSideProps(context) {
-  // this isn't quite optimized should look into changing in the future TODO
-  const gym = await getGymById(context.params.gymId);
+  let client;
+  client = await connectToDatabase();
+  const gym = await getGymById(client, "gym-data", {
+    _id: ObjectId(context.params.wallId),
+  });
   const wallsData = gym.walls;
   const walls = [];
   for (let key in wallsData) {

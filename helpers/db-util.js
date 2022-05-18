@@ -36,3 +36,11 @@ export async function getGymIds(client, collection) {
   const result = await db.collection(collection).distinct("_id", {}, {});
   return result;
 }
+
+export async function updateGym(client, collection, id, wallData) {
+  const db = client.db();
+  const result = await db
+    .collection(collection)
+    .update(id, { $push: { walls: wallData } });
+  return result;
+}

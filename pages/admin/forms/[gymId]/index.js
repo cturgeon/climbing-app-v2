@@ -5,10 +5,12 @@ import { Button } from "@mantine/core";
 
 async function sendFormData(newGymData) {
   const { gymId, name, image } = newGymData;
+  const wallData = { name, image };
+  console.log(gymId);
 
-  const response = await fetch(`/api/${gymId}/wallData`, {
-    method: "POST",
-    body: JSON.stringify(newGymData),
+  const response = await fetch(`/api/${gymId}`, {
+    method: "PUT",
+    body: JSON.stringify(wallData),
     headers: {
       "Content-Type": "application/json",
     },
@@ -34,11 +36,12 @@ export default function WallForm(props) {
     event.preventDefault();
 
     const newWall = {
-      id: props.gymId,
+      gymId: props.gym._id,
       name: enteredName.current.value,
       image: enteredImage.current.value,
     };
 
+    console.log(newWall);
     validateFormInformation(newWall);
 
     try {
@@ -46,17 +49,20 @@ export default function WallForm(props) {
     } catch (error) {
       //TODO set error handling here
     }
+
+    enteredImage.current.value = "";
+    enteredName.current.value = "";
   }
 
   return (
     <div>
       <h3>Add a wall to {`${gym.name}`}</h3>
-      <form>
+      <form onSubmit={submitHandler}>
         <label>name: </label>
         <input input="text" ref={enteredName}></input>
         <label>image: </label>
         <input input="text" ref={enteredImage}></input>
-        <Button onSubmit={submitHandler}>Add</Button>
+        <Button type="submit">Add</Button>
       </form>
     </div>
   );

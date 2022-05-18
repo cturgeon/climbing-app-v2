@@ -5,7 +5,7 @@ import {
   deleteGym,
   getAllGymData,
   getGymById,
-} from "../../helpers/db-util";
+} from "../../../helpers/db-util";
 
 export default async function handler(req, res) {
   let client;

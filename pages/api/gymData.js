@@ -5,6 +5,7 @@ import {
   deleteGym,
   getAllGymData,
   getGymById,
+  updateGym,
 } from "../../helpers/db-util";
 
 export default async function handler(req, res) {
@@ -59,6 +60,20 @@ export default async function handler(req, res) {
       res.status(201).json({ message: "Deleted gym from database" });
     } catch (error) {
       res.status(500).json({ message: "Failed to delete gym data" });
+    }
+  }
+
+  if (req.method === "PUT") {
+    try {
+      await updateGym(
+        client,
+        "gym-data",
+        { _id: ObjectId(req.body.id) },
+        { wall: req.body.wallData }
+      );
+      res.status(201).json({ message: "Updated gym" });
+    } catch (error) {
+      res.status(500).json({ message: "failed to update gym" });
     }
   }
 
