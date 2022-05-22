@@ -23,7 +23,6 @@ export default async function handler(req, res) {
     const gymId = req.body._id;
     let gymData = req.body;
     gymData._id = ObjectId(gymId);
-    console.log(gymData);
     const result = await updateGym(
       client,
       "gym-data",

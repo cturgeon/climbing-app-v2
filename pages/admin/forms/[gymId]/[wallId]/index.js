@@ -1,14 +1,30 @@
 import { ObjectId } from "mongodb";
 import { connectToDatabase, getGymById } from "../../../../../helpers/db-util";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { Button } from "@mantine/core";
+
+async function sendFormData(updatedGymData) {
+  const gymId = updatedGymData._id;
+  console.log(gymId);
+  const response = await fetch(`/api/${gymId}`, {
+    method: "PUT",
+    body: JSON.stringify(updatedGymData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Something went wrong");
+  }
+}
 
 export default function WallFormEditPage(props) {
   const wallId = props.wallId;
   const gym = props.gym;
   const gymWall = gym.walls[wallId];
-
-  console.log(gym);
 
   const enteredName = useRef();
   const enteredColor = useRef();
@@ -29,12 +45,35 @@ export default function WallFormEditPage(props) {
     };
 
     gymWall.routes.push(routeData);
-    console.log(gym);
+
+    try {
+      await sendFormData(gym);
+    } catch (error) {
+      //TODO set error handling here
+    }
+
+    enteredName.current.value = "";
+    enteredColor.current.value = "";
+    enteredGrade.current.value = "";
+    enteredDescription.current.value = "";
+    enteredImage.current.value = "";
   }
 
   return (
     <div>
       <h1>Edit {gymWall.name}</h1>
+      {gymWall.routes.length > 0 && (
+        <Fragment>
+          <h2>current wall routes</h2>
+          <ul>
+            {gymWall.routes.map((route) => (
+              <li key={route.id}>
+                <p>{route.name}</p>
+              </li>
+            ))}
+          </ul>
+        </Fragment>
+      )}
       <h3>Add a route below</h3>
       <form onSubmit={submitHandler}>
         <div>
