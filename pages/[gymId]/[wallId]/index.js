@@ -1,21 +1,21 @@
 import { connectToDatabase, getGymById } from "../../../helpers/db-util";
-import ClimbList from "../../../components/climb-list";
-import { Title } from "@mantine/core";
+// import ClimbList from "../../../components/climb-list";
+// import { Title } from "@mantine/core";
 import { ObjectId } from "mongodb";
 
 export default function SpecificWall(props) {
   const { wall } = props;
 
-  if (wall) {
-    return (
-      <div style={{ padding: 0 }}>
-        <Title order={1} align="center">
-          {wall.name}
-        </Title>
-        <ClimbList items={wall.climbs} />
-      </div>
-    );
-  }
+  // if (wall) {
+  //   return (
+  //     <div style={{ padding: 0 }}>
+  //       <Title order={1} align="center">
+  //         {wall.name}
+  //       </Title>
+  //       <ClimbList items={wall.climbs} />
+  //     </div>
+  //   );
+  // }
 
   return <div>This wall does not exist please try another</div>;
 }

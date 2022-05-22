@@ -13,7 +13,7 @@ export default function AdminPageComponent(props) {
           })}
       </ul>
       <Button component="a" href={`/admin/forms/${items._id}`}>
-        Add a wall
+        Edit walls
       </Button>
     </div>
   );

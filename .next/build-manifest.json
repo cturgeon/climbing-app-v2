@@ -20,6 +20,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/[gymId]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/[gymId].js"
+    ],
     "/[gymId]/[wallId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

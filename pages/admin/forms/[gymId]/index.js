@@ -3,14 +3,12 @@ import { ObjectId } from "mongodb";
 import { useRef } from "react";
 import { Button } from "@mantine/core";
 
-async function sendFormData(newGymData) {
-  const { gymId, name, image } = newGymData;
-  const wallData = { name, image };
+async function sendFormData(updatedGymData) {
+  const gymId = updatedGymData._id;
   console.log(gymId);
-
   const response = await fetch(`/api/${gymId}`, {
     method: "PUT",
-    body: JSON.stringify(wallData),
+    body: JSON.stringify(updatedGymData),
     headers: {
       "Content-Type": "application/json",
     },
@@ -32,20 +30,22 @@ export default function WallForm(props) {
     return <p>Loading....</p>;
   }
 
+  const wallArray = gym.walls;
+
   async function submitHandler(event) {
     event.preventDefault();
 
     const newWall = {
-      gymId: props.gym._id,
       name: enteredName.current.value,
       image: enteredImage.current.value,
+      routes: [],
     };
-
-    console.log(newWall);
     validateFormInformation(newWall);
 
+    wallArray.push(newWall);
+
     try {
-      await sendFormData(newWall);
+      await sendFormData(gym);
     } catch (error) {
       //TODO set error handling here
     }

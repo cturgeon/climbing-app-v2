@@ -37,10 +37,8 @@ export async function getGymIds(client, collection) {
   return result;
 }
 
-export async function updateGym(client, collection, id, wallData) {
+export async function updateGym(client, collection, id, gymData) {
   const db = client.db();
-  const result = await db
-    .collection(collection)
-    .update(id, { $push: { walls: wallData } });
+  const result = await db.collection(collection).replaceOne(id, gymData);
   return result;
 }
