@@ -1,6 +1,6 @@
 import { connectToDatabase, getGymById } from "../../../../helpers/db-util";
 import { ObjectId } from "mongodb";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { Button } from "@mantine/core";
 
 async function sendFormData(updatedGymData) {
@@ -36,6 +36,7 @@ export default function WallForm(props) {
     event.preventDefault();
 
     const newWall = {
+      id: gym.walls.length,
       name: enteredName.current.value,
       image: enteredImage.current.value,
       routes: [],
@@ -64,6 +65,24 @@ export default function WallForm(props) {
         <input input="text" ref={enteredImage}></input>
         <Button type="submit">Add</Button>
       </form>
+      {gym.walls.length > 0 && (
+        <Fragment>
+          <h3>Edit a wall below</h3>
+          <ul>
+            {gym.walls.map((wall) => (
+              <li key={wall.id}>
+                <p>{wall.name}</p>
+                <Button
+                  component="a"
+                  href={`/admin/forms/${gym._id}/${wall.id}`}
+                >
+                  edit {`${wall.name}`}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </Fragment>
+      )}
     </div>
   );
 }
