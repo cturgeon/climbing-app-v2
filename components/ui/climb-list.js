@@ -1,5 +1,6 @@
-import ClimbItem from "./climb-item";
 import { Grid } from "@mantine/core";
+
+import ClimbItem from "./climb-item";
 
 // props from [wallId]
 export default function ClimbList(props) {

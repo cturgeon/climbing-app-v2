@@ -7,8 +7,9 @@ import {
   useMantineTheme,
   Grid,
 } from "@mantine/core";
-import ClimbCommentsModal from "../climb-comments-modal";
-import ClimbLogModal from "../climb-log-modal";
+
+import ClimbCommentsModal from "./climb-comments-modal";
+import ClimbLogModal from "./climb-log-modal";
 
 // props from ClimbItem <- ClimbList <-[wallId]
 export default function ClimbCard(props) {

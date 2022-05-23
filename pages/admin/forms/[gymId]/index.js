@@ -1,9 +1,7 @@
 import { ObjectId } from "mongodb";
 
-import { Box } from "@mantine/core";
-
 import { connectToDatabase, getGymById } from "../../../../helpers/db-util";
-import AdminWallForm from "../../../../components/admin/wall-form";
+import AdminWallForm from "../../../../components/admin/forms/wall-form";
 import AdminWallList from "../../../../components/admin/ui/wall-list";
 
 export default function WallForm(props) {
@@ -14,10 +12,7 @@ export default function WallForm(props) {
 
   return (
     <>
-      <h3>Add a wall to {`${gym.name}`}</h3>
-      <Box sx={{ maxWidth: 300 }}>
-        <AdminWallForm items={gym} />
-      </Box>
+      <AdminWallForm items={gym} />
       {gym.walls.length > 0 && <AdminWallList items={gym} />}
     </>
   );

@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Modal,
-  Button,
-  Group,
-  Text,
-  Grid,
-  Title,
-  SimpleGrid,
-} from "@mantine/core";
+import { Modal, Button, Group, Text, Grid, Title } from "@mantine/core";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbLogModal(props) {

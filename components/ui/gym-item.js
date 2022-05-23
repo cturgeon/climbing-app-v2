@@ -1,4 +1,4 @@
-import GymCard from "./ui/gym-card";
+import GymCard from "./gym-card";
 
 // props from ClimbList <- [wallId]
 // TODO maybe use redux/context or composition change

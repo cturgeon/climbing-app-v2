@@ -1,4 +1,4 @@
-import ClimbCard from "./ui/climb-card";
+import ClimbCard from "./climb-card";
 
 // props from ClimbList <- [wallId]
 // TODO maybe use redux/context or composition change

@@ -1,4 +1,4 @@
-import { Box, Button, Group, List, Grid } from "@mantine/core";
+import { Box, Button, Grid } from "@mantine/core";
 
 export default function AdminPageComponent(props) {
   const { items } = props;

@@ -1,7 +1,9 @@
-import { connectToDatabase, getGymById } from "../../../helpers/db-util";
-import ClimbList from "../../../components/climb-list";
-import { Title } from "@mantine/core";
 import { ObjectId } from "mongodb";
+
+import { Title } from "@mantine/core";
+
+import { connectToDatabase, getGymById } from "../../../helpers/db-util";
+import ClimbList from "../../../components/ui/climb-list";
 
 export default function SpecificWall(props) {
   const { wall } = props;

@@ -1,5 +1,6 @@
-import { AppShell, Header, MediaQuery, Burger, useMantineTheme, Text, Button, Group, Anchor, Navbar, SimpleGrid, Space, Grid, Aside } from '@mantine/core';
 import { useState } from 'react';
+
+import { AppShell, Header, MediaQuery, Burger, useMantineTheme, Text, Button, Group, Anchor, Navbar, SimpleGrid, Space, Grid, Aside } from '@mantine/core';
 
 export default function AppShellComponent() {    
   const theme = useMantineTheme();

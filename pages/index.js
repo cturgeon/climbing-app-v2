@@ -1,9 +1,9 @@
-import { Text, Group } from "@mantine/core";
 import { Fragment } from "react";
 
-import { connectToDatabase, getAllGymData } from "../helpers/db-util";
+import { Text, Group } from "@mantine/core";
 
-import GymList from "../components/gym-list";
+import { connectToDatabase, getAllGymData } from "../helpers/db-util";
+import GymList from "../components/ui/gym-list";
 
 export default function Home(props) {
   const { gymData } = props;

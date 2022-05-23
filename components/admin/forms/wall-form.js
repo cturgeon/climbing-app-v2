@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { Button, Input, Group } from "@mantine/core";
+import { Button, Input, Group, Box } from "@mantine/core";
 
 async function sendFormData(updatedGymData) {
   const gymId = updatedGymData._id;
@@ -51,19 +51,24 @@ export default function AdminWallForm(props) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <label>Name: </label>
-        <Input input="text" ref={enteredName} />
-      </div>
-      <div>
-        <label>Image: </label>
-        <Input input="text" ref={enteredImage} />
-      </div>
-      <Group position="right" mt="md">
-        <Button type="submit">Add</Button>
-      </Group>
-    </form>
+    <>
+      <Box sx={{ maxWidth: 300 }} mx="auto">
+        <h3>Add a wall to {`${gym.name}`}</h3>
+        <form onSubmit={submitHandler}>
+          <div>
+            <label>Name: </label>
+            <Input input="text" ref={enteredName} />
+          </div>
+          <div>
+            <label>Image: </label>
+            <Input input="text" ref={enteredImage} />
+          </div>
+          <Group position="right" mt="md">
+            <Button type="submit">Add</Button>
+          </Group>
+        </form>
+      </Box>
+    </>
   );
 }
 

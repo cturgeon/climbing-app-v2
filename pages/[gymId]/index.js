@@ -1,16 +1,15 @@
 import { Fragment } from "react";
+import { ObjectId } from "mongodb";
+
+import { Group } from "@mantine/core";
 
 import {
   connectToDatabase,
   getGymIds,
   getGymById,
 } from "../../helpers/db-util";
-
 import GymHeader from "../../components/ui/gym-header";
-import WallList from "../../components/wall-list";
-
-import { Group } from "@mantine/core";
-import { ObjectId } from "mongodb";
+import WallList from "../../components/ui/wall-list";
 
 export default function SpecificGym(props) {
   const gym = props.gym;
