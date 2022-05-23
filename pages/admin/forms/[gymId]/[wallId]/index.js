@@ -1,7 +1,8 @@
 import { ObjectId } from "mongodb";
 import { connectToDatabase, getGymById } from "../../../../../helpers/db-util";
 import { Fragment, useRef } from "react";
-import { Button } from "@mantine/core";
+import { Box, Button, Group, Input, List } from "@mantine/core";
+import { Circles } from "tabler-icons-react";
 
 async function sendFormData(updatedGymData) {
   const gymId = updatedGymData._id;
@@ -60,43 +61,57 @@ export default function WallFormEditPage(props) {
 
   return (
     <div>
-      <h1>Edit {gymWall.name}</h1>
-      {gymWall.routes.length > 0 && (
-        <Fragment>
-          <h2>current wall routes</h2>
-          <ul>
-            {gymWall.routes.map((route) => (
-              <li key={route.id}>
-                <p>{route.name}</p>
-              </li>
-            ))}
-          </ul>
-        </Fragment>
-      )}
-      <h3>Add a route below</h3>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label>name</label>
-          <input type="text" id="name" ref={enteredName} />
-        </div>
-        <div>
-          <label>color</label>
-          <input type="text" id="color" ref={enteredColor} />
-        </div>
-        <div>
-          <label>grade</label>
-          <input type="text" id="grade" ref={enteredGrade} />
-        </div>
-        <div>
-          <label>description</label>
-          <input type="text" id="description" ref={enteredDescription} />
-        </div>
-        <div>
-          <label>image</label>
-          <input type="text" id="image" ref={enteredImage} />
-        </div>
-        <Button type="submit">Add route</Button>
-      </form>
+      <Box sx={{ maxWidth: 300 }} mx="auto" style={{ marginBottom: 40 }}>
+        <h2>Current routes on {gymWall.name}</h2>
+        {gymWall.routes.length > 0 && (
+          <Fragment>
+            <List size={20} center>
+              {gymWall.routes.map((route) => (
+                <List.Item
+                  key={route.id}
+                  icon={
+                    <Circles
+                      size={24}
+                      strokeWidth={2}
+                      color={`${route.color}`}
+                    />
+                  }
+                >
+                  {route.color} {route.grade} : {route.name}
+                </List.Item>
+              ))}
+            </List>
+          </Fragment>
+        )}
+      </Box>
+      <Box sx={{ maxWidth: 300 }} mx="auto">
+        <h3>Add a route below</h3>
+        <form onSubmit={submitHandler}>
+          <div>
+            <label>Name</label>
+            <Input type="text" id="name" ref={enteredName} />
+          </div>
+          <div>
+            <label>Color</label>
+            <Input type="text" id="color" ref={enteredColor} />
+          </div>
+          <div>
+            <label>Grade</label>
+            <Input type="text" id="grade" ref={enteredGrade} />
+          </div>
+          <div>
+            <label>Description</label>
+            <Input type="text" id="description" ref={enteredDescription} />
+          </div>
+          <div>
+            <label>Image</label>
+            <Input type="text" id="image" ref={enteredImage} />
+          </div>
+          <Group position="right" mt="md">
+            <Button type="submit">Add route</Button>
+          </Group>
+        </form>
+      </Box>
     </div>
   );
 }
