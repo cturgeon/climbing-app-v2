@@ -76,7 +76,7 @@ export default function WallForm(props) {
       {gym.walls.length > 0 && (
         <Fragment>
           <h3>Edit a wall below</h3>
-          <List spacing={5} style={{ "list-style": "none" }}>
+          <List spacing={5} style={{ listStyle: "none" }}>
             {gym.walls.map((wall) => (
               <List.Item key={wall.id}>
                 <Button

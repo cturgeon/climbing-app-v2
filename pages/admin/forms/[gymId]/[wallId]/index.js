@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { connectToDatabase, getGymById } from "../../../../../helpers/db-util";
-import { Fragment, useRef } from "react";
-import { Box, Button, Group, Input, List } from "@mantine/core";
+import { Fragment, useRef, useState } from "react";
+import { Box, Button, Group, Input, List, Select } from "@mantine/core";
 import { Circles } from "tabler-icons-react";
 
 async function sendFormData(updatedGymData) {
@@ -28,7 +28,8 @@ export default function WallFormEditPage(props) {
 
   const enteredName = useRef();
   const enteredColor = useRef();
-  const enteredGrade = useRef();
+  const [gradeValue, setGradeValue] = useState();
+  const [colorValue, setColorValue] = useState();
   const enteredDescription = useRef();
   const enteredImage = useRef();
 
@@ -38,8 +39,8 @@ export default function WallFormEditPage(props) {
     const routeData = {
       id: gymWall.routes.length,
       name: enteredName.current.value,
-      color: enteredColor.current.value,
-      grade: enteredGrade.current.value,
+      color: colorValue,
+      grade: gradeValue,
       description: enteredDescription.current.value,
       image: enteredImage.current.value,
     };
@@ -53,8 +54,6 @@ export default function WallFormEditPage(props) {
     }
 
     enteredName.current.value = "";
-    enteredColor.current.value = "";
-    enteredGrade.current.value = "";
     enteredDescription.current.value = "";
     enteredImage.current.value = "";
   }
@@ -89,23 +88,56 @@ export default function WallFormEditPage(props) {
         <form onSubmit={submitHandler}>
           <div>
             <label>Name</label>
-            <Input type="text" id="name" ref={enteredName} />
+            <Input required type="text" ref={enteredName} />
           </div>
           <div>
             <label>Color</label>
-            <Input type="text" id="color" ref={enteredColor} />
+            <Select
+              required
+              value={colorValue}
+              onChange={setColorValue}
+              data={[
+                { value: "Yellow", label: "Yellow" },
+                { value: "Black", label: "Black" },
+                { value: "Blue", label: "Blue" },
+                { value: "Purple", label: "Purple" },
+                { value: "Brown", label: "Brown" },
+                { value: "Orage", label: "Orage" },
+                { value: "Green", label: "Green" },
+                { value: "Gray", label: "Gray" },
+                { value: "White", label: "White" },
+              ]}
+            />
           </div>
+
           <div>
             <label>Grade</label>
-            <Input type="text" id="grade" ref={enteredGrade} />
+            <Select
+              required
+              value={gradeValue}
+              onChange={setGradeValue}
+              data={[
+                { value: "V0", label: "V0" },
+                { value: "V1", label: "V1" },
+                { value: "V2", label: "V2" },
+                { value: "V3", label: "V3" },
+                { value: "V4", label: "V4" },
+                { value: "V5", label: "V5" },
+                { value: "V6", label: "V6" },
+                { value: "V7", label: "V7" },
+                { value: "V8", label: "V8" },
+                { value: "V9", label: "V9" },
+                { value: "V10", label: "V10" },
+              ]}
+            />
           </div>
           <div>
             <label>Description</label>
-            <Input type="text" id="description" ref={enteredDescription} />
+            <Input required type="text" ref={enteredDescription} />
           </div>
           <div>
             <label>Image</label>
-            <Input type="text" id="image" ref={enteredImage} />
+            <Input required type="text" ref={enteredImage} />
           </div>
           <Group position="right" mt="md">
             <Button type="submit">Add route</Button>

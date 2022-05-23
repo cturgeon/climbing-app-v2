@@ -46,7 +46,7 @@ export default function ClimbLogModal(props) {
                     style={{
                       marginLeft: 10,
                       display: "flex",
-                      "align-items": "flex-end",
+                      alignItems: "flex-end",
                       bottom: 0,
                     }}
                   >
@@ -55,7 +55,7 @@ export default function ClimbLogModal(props) {
                   <Text
                     style={{
                       display: "flex",
-                      "align-items": "flex-end",
+                      alignItems: "flex-end",
                       bottom: 0,
                     }}
                   >

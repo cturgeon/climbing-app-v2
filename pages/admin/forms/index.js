@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, Box, Input, Group } from "@mantine/core";
 import { useRef } from "react";
 
 async function sendFormData(newGymData) {
@@ -47,32 +47,34 @@ export default function GymFormPage() {
   }
 
   return (
-    <div align="center">
+    <Box sx={{ maxWidth: 300 }} mx="auto" style={{ marginBottom: 40 }}>
       <h2>Add a new gym below</h2>
       <form onSubmit={submitHandler}>
         <div>
-          <label>Gym Name: </label>
-          <input type="text" name="name" ref={enteredGymName} />
+          <label required>Name </label>
+          <Input type="text" name="name" ref={enteredGymName} />
         </div>
         <div>
-          <label>Gym Address: </label>
-          <input type="text" name="address" ref={enteredGymAddress} />
+          <label required>Address </label>
+          <Input type="text" name="address" ref={enteredGymAddress} />
         </div>
         <div>
-          <label>Gym Description: </label>
-          <input
+          <label required>Description </label>
+          <Input
             type="textarea"
             name="description"
             ref={enteredGymDesciption}
           />
         </div>
         <div>
-          <label>Gym Image:</label>
-          <input type="text" name="image" ref={enteredGymImage} />
+          <label required>Image</label>
+          <Input type="text" name="image" ref={enteredGymImage} />
         </div>
-        <Button type="submit">Add</Button>
+        <Group position="right" mt="md">
+          <Button type="submit">Add</Button>
+        </Group>
       </form>
-    </div>
+    </Box>
   );
 }
 

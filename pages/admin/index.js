@@ -1,25 +1,25 @@
 import { Fragment } from "react";
 import AdminPageComponent from "../../components/admin/admin";
 import { connectToDatabase, getAllGymData } from "../../helpers/db-util";
-import { Button } from "@mantine/core";
+import { Box, Button, List } from "@mantine/core";
 
 export default function AdminPage(props) {
   const { gymData } = props;
 
   return (
-    <div>
+    <Box sx={{ maxWidth: 300 }} mx="auto">
       <h1>Admin Page</h1>
-      <Button component="a" href="/admin/forms">
+      <Button component="a" href="/admin/forms" style={{ marginBottom: 20 }}>
         Add a Gym
       </Button>
-      <ul>
+      <List style={{ marginBottom: 40 }}>
         {gymData.map((gym) => (
           <Fragment key={gym._id}>
             <AdminPageComponent items={gym} />
           </Fragment>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 }
 
