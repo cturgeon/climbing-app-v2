@@ -1,11 +1,11 @@
 import { connectToDatabase, getGymById } from "../../../../helpers/db-util";
 import { ObjectId } from "mongodb";
 import { Fragment, useRef } from "react";
-import { Button } from "@mantine/core";
+import { Button, Box, Input, Group, List, ThemeIcon } from "@mantine/core";
+import { Wall } from "tabler-icons-react";
 
 async function sendFormData(updatedGymData) {
   const gymId = updatedGymData._id;
-  console.log(gymId);
   const response = await fetch(`/api/${gymId}`, {
     method: "PUT",
     body: JSON.stringify(updatedGymData),
@@ -58,29 +58,38 @@ export default function WallForm(props) {
   return (
     <div>
       <h3>Add a wall to {`${gym.name}`}</h3>
-      <form onSubmit={submitHandler}>
-        <label>name: </label>
-        <input input="text" ref={enteredName}></input>
-        <label>image: </label>
-        <input input="text" ref={enteredImage}></input>
-        <Button type="submit">Add</Button>
-      </form>
+      <Box sx={{ maxWidth: 300 }}>
+        <form onSubmit={submitHandler}>
+          <div>
+            <label>Name: </label>
+            <Input input="text" ref={enteredName} />
+          </div>
+          <div>
+            <label>Image: </label>
+            <Input input="text" ref={enteredImage} />
+          </div>
+          <Group position="right" mt="md">
+            <Button type="submit">Add</Button>
+          </Group>
+        </form>
+      </Box>
       {gym.walls.length > 0 && (
         <Fragment>
           <h3>Edit a wall below</h3>
-          <ul>
+          <List spacing={5} style={{ "list-style": "none" }}>
             {gym.walls.map((wall) => (
-              <li key={wall.id}>
-                <p>{wall.name}</p>
+              <List.Item key={wall.id}>
                 <Button
+                  leftIcon={<Wall size={24} strokeWidth={1} color={"black"} />}
+                  variant="light"
                   component="a"
                   href={`/admin/forms/${gym._id}/${wall.id}`}
                 >
-                  edit {`${wall.name}`}
+                  {`${wall.name}`}
                 </Button>
-              </li>
+              </List.Item>
             ))}
-          </ul>
+          </List>
         </Fragment>
       )}
     </div>

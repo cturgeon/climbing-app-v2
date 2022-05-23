@@ -47,6 +47,7 @@ export async function getStaticProps(context) {
       props: {
         gym: JSON.parse(JSON.stringify(gymData)),
       },
+      revalidate: 60,
     };
   } catch (error) {
     client.close();

@@ -5,7 +5,7 @@ export default function AdminPageComponent(props) {
   return (
     <div>
       <h3>{`Edit ${items.name}`}</h3>
-      <p>Edit a wall below or add a wall</p>
+      <p>Edit the gym walls</p>
       <ul>
         {items.wall &&
           items.wall.map((wall) => {

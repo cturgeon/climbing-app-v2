@@ -39,6 +39,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       wall: wall,
+      revalidate: 60,
     },
   };
 }

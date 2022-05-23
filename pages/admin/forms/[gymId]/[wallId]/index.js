@@ -5,7 +5,6 @@ import { Button } from "@mantine/core";
 
 async function sendFormData(updatedGymData) {
   const gymId = updatedGymData._id;
-  console.log(gymId);
   const response = await fetch(`/api/${gymId}`, {
     method: "PUT",
     body: JSON.stringify(updatedGymData),
