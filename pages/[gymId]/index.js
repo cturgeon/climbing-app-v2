@@ -63,7 +63,7 @@ export async function getStaticPaths() {
     const gymIds = JSON.parse(JSON.stringify(gymData));
     const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
     return {
-      paths: paths,
+      paths: [...paths],
       fallback: "blocking",
     };
   } catch (error) {
