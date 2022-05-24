@@ -31,15 +31,14 @@ export async function getServerSideProps(context) {
     const gymData = await getGymById(client, "gym-data", {
       _id: ObjectId(gymId),
     });
-    client.close();
     return {
       props: {
         gym: JSON.parse(JSON.stringify(gymData)),
       },
     };
   } catch (error) {
-    client.close();
-    console.error(error);
-    return;
+    return {
+      notFound: true,
+    };
   }
 }

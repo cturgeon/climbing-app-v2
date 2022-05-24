@@ -49,9 +49,9 @@ export async function getStaticProps(context) {
       revalidate: 60,
     };
   } catch (error) {
-    client.close();
-    console.error(error);
-    return;
+    return {
+      notFound: true,
+    };
   }
 }
 
@@ -62,14 +62,13 @@ export async function getStaticPaths() {
     const gymData = await getGymIds(client, "gym-data");
     const gymIds = JSON.parse(JSON.stringify(gymData));
     const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
-    client.close();
     return {
       paths: paths,
       fallback: "blocking",
     };
   } catch (error) {
-    client.close();
-    console.error(error);
-    return;
+    return {
+      notFound: true,
+    };
   }
 }
