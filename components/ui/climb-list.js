@@ -1,6 +1,7 @@
 import { Grid } from "@mantine/core";
 
 import ClimbItem from "./climb-item";
+import ClimbCard from "./climb-card";
 
 // props from [wallId]
 export default function ClimbList(props) {
@@ -22,15 +23,16 @@ export default function ClimbList(props) {
     <ul style={{ padding: 0 }}>
       <Grid justify="center" spacing="md">
         {climbs.map((route) => (
-          <ClimbItem
-            key={route.id}
-            id={route.id}
-            image={route.image}
-            name={route.name}
-            grade={route.grade}
-            description={route.description}
-            color={route.color}
-          />
+          <ClimbItem key={route.id}>
+            <ClimbCard
+              id={route.id}
+              image={route.image}
+              name={route.name}
+              grade={route.grade}
+              description={route.description}
+              color={route.color}
+            />
+          </ClimbItem>
         ))}
       </Grid>
     </ul>

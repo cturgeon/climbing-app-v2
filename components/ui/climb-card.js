@@ -2,10 +2,10 @@ import {
   Card,
   Image,
   Text,
-  Button,
   Group,
   useMantineTheme,
   Grid,
+  Box,
 } from "@mantine/core";
 
 import ClimbCommentsModal from "./climb-comments-modal";
@@ -20,12 +20,11 @@ export default function ClimbCard(props) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div style={{ width: 340, margin: "auto" }}>
+    <Box sx={{ maxWidth: 300 }} mx="auto">
       <Card shadow="sm" p="lg">
         <Card.Section>
-          <Image src={image} height={160} alt={id} />
+          <Image src={image} alt={id} />
         </Card.Section>
-
         <Group
           position="apart"
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
@@ -46,6 +45,6 @@ export default function ClimbCard(props) {
           <ClimbLogModal items={props} />
         </Grid>
       </Card>
-    </div>
+    </Box>
   );
 }

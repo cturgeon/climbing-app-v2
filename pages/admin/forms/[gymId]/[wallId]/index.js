@@ -1,41 +1,45 @@
-import { ObjectId } from "mongodb";
+import { useEffect, useState, Fragment } from "react";
+import { useRouter } from "next/router";
 
-import { connectToDatabase, getGymById } from "../../../../../helpers/db-util";
 import AdminRouteForm from "../../../../../components/admin/forms/route-form";
 import AdminRouteList from "../../../../../components/admin/ui/route-list";
 
-export default function WallFormEditPage(props) {
-  const wallId = props.wallId;
-  const gym = props.gym;
-  const gymWall = gym.walls[wallId];
+export default function WallFormEditPage() {
+  const [gymData, setGymData] = useState();
+  const [gymWall, setGymWall] = useState();
+  const router = useRouter();
+  const { gymId } = router.query;
+  const wallId = router.query.wallId;
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      await fetch(`/api/gymData`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.gymData.find((gym) => gym._id === gymId)) {
+            const gym = data.gymData.find((gym) => gym._id === gymId);
+            const gymWall = gym.walls[wallId];
+            setGymData(gym);
+            setGymWall(gymWall);
+            setIsLoading(false);
+          }
+        });
+    };
+    fetchData();
+  }, []);
+
+  if (isLoading) return <p>loading...</p>;
 
   return (
     <>
-      <AdminRouteList items={gymWall} />
-      <AdminRouteForm items={{ gym, gymWall }} />
+      {gymData && (
+        <Fragment>
+          <AdminRouteList items={gymWall} />
+          <AdminRouteForm items={{ gymData, gymWall }} />
+        </Fragment>
+      )}
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const gymId = context.params.gymId;
-  const wallId = context.params.wallId;
-  let client;
-  try {
-    client = await connectToDatabase();
-    const gymData = await getGymById(client, "gym-data", {
-      _id: ObjectId(gymId),
-    });
-    client.close();
-    return {
-      props: {
-        gym: JSON.parse(JSON.stringify(gymData)),
-        wallId: wallId,
-      },
-    };
-  } catch (error) {
-    client.close();
-    console.error(error);
-    return;
-  }
 }

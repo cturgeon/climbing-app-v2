@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import { Button, Input, Group } from "@mantine/core";
 
-async function sendFormData(newGymData) {
+const sendFormData = async (newGymData) => {
   const response = await fetch("/api/gymData", {
     method: "POST",
     body: JSON.stringify(newGymData),
@@ -15,7 +15,7 @@ async function sendFormData(newGymData) {
   if (!response.ok) {
     throw new Error(data.message || "Something went wrong");
   }
-}
+};
 
 export default function AdminGymForm(props) {
   const enteredGymName = useRef();

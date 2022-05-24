@@ -1,14 +1,26 @@
-import { ObjectId } from "mongodb";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-import { connectToDatabase, getGymById } from "../../../../helpers/db-util";
 import AdminWallForm from "../../../../components/admin/forms/wall-form";
 import AdminWallList from "../../../../components/admin/ui/wall-list";
 
-export default function WallForm(props) {
-  const gym = props.gym;
-  if (!gym) {
-    return <p>Loading....</p>;
-  }
+export default function WallForm() {
+  const [gym, setGym] = useState();
+  const router = useRouter();
+  const { gymId } = router.query;
+
+  useEffect(() => {
+    fetch(`/api/gymData`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.gymData.find((gym) => gym._id === gymId)) {
+          const gym = data.gymData.find((gym) => gym._id === gymId);
+          setGym(gym);
+        }
+      });
+  }, []);
+
+  if (!gym) return <p>loading...</p>;
 
   return (
     <>
@@ -16,25 +28,4 @@ export default function WallForm(props) {
       {gym.walls.length > 0 && <AdminWallList items={gym} />}
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const gymId = context.params.gymId;
-  let client;
-  try {
-    client = await connectToDatabase();
-    const gymData = await getGymById(client, "gym-data", {
-      _id: ObjectId(gymId),
-    });
-    client.close();
-    return {
-      props: {
-        gym: JSON.parse(JSON.stringify(gymData)),
-      },
-    };
-  } catch (error) {
-    client.close();
-    console.error(error);
-    return;
-  }
 }

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
-import { Modal, Button, Group, Textarea } from "@mantine/core";
+import { Modal, Button, Group, Textarea, List } from "@mantine/core";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbCommentsModal(props) {
@@ -17,11 +17,18 @@ export default function ClimbCommentsModal(props) {
         title="Talk beta and add comments"
       >
         {
-          <Textarea
-            placeholder="Talk beta or add a comment"
-            label="Your Comment"
-            required
-          />
+          <Fragment>
+            <Textarea
+              placeholder="Talk beta or add a comment"
+              label="Your Comment"
+              required
+            />
+            <List>
+              <h4>People who have sent this climb!</h4>
+              <List.Item>PersonX : Y attempts</List.Item>
+              <List.Item>PersonI : J attempts</List.Item>
+            </List>
+          </Fragment>
         }
       </Modal>
       <Group position="center">

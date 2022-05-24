@@ -1,5 +1,11 @@
+import { useRouter } from "next/router";
 import { ObjectId } from "mongodb";
-import { connectToDatabase, updateGym } from "../../../helpers/db-util";
+
+import {
+  connectToDatabase,
+  getGymById,
+  updateGym,
+} from "../../../helpers/db-util";
 
 export default async function handler(req, res) {
   let client;
