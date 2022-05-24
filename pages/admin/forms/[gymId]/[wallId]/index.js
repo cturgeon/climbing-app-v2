@@ -1,8 +1,13 @@
 import { useEffect, useState, Fragment } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
-import AdminRouteForm from "../../../../../components/admin/forms/route-form";
-import AdminRouteList from "../../../../../components/admin/ui/route-list";
+const AdminRouteForm = dynamic(() =>
+  import("../../../../../components/admin/forms/route-form")
+);
+const AdminRouteList = dynamic(() =>
+  import("../../../../../components/admin/ui/route-list")
+);
 
 export default function WallFormEditPage() {
   const [gymData, setGymData] = useState();
@@ -28,7 +33,7 @@ export default function WallFormEditPage() {
         });
     };
     fetchData();
-  }, []);
+  }, [gymId, wallId]);
 
   if (isLoading) return <p>loading...</p>;
 
