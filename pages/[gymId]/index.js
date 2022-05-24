@@ -56,19 +56,12 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  let client;
-  try {
-    client = await connectToDatabase();
-    const gymData = await getGymIds(client, "gym-data");
-    const gymIds = JSON.parse(JSON.stringify(gymData));
-    const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
-    return {
-      paths: [...paths],
-      fallback: "blocking",
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+  const client = await connectToDatabase();
+  const gymData = await getGymIds(client, "gym-data");
+  const gymIds = JSON.parse(JSON.stringify(gymData));
+  const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
+  return {
+    paths: [...paths],
+    fallback: "blocking",
+  };
 }
