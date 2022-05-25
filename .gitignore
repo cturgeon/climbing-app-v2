@@ -3,3 +3,4 @@ next.config.js
 .next.config.js
 .next
 .env.local
+.vercel

@@ -88,9 +88,15 @@ export default function App({
                   <Button component="a" href="/admin">
                     Gym Admin Page
                   </Button>
-                  <Button>View Home Gym</Button>
-                  <Button>View Climb Logs</Button>
-                  <Button>Settings</Button>
+                  <Button component="a" href="/user/home">
+                    View Home Gym
+                  </Button>
+                  <Button component="a" href="/user/logs">
+                    View Climb Logs
+                  </Button>
+                  <Button component="a" href="/user/settings">
+                    Settings
+                  </Button>
                 </SimpleGrid>
               </Aside.Section>
               <Aside.Section>{<LoginButton />}</Aside.Section>
