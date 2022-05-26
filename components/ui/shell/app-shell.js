@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 import {
   MantineProvider,
@@ -17,6 +18,7 @@ import {
 import LoginButton from "../../auth/login-btn";
 
 export default function AppShellComponent(props) {
+  const { data: session, status } = useSession();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
@@ -68,22 +70,27 @@ export default function AppShellComponent(props) {
             width={{ sm: 200, lg: 300 }}
           >
             <Aside.Section grow>
-              <SimpleGrid>
-                <Button component="a" href="/admin">
-                  Gym Admin Page
-                </Button>
-                <Button component="a" href="/user/home">
-                  View Home Gym
-                </Button>
-                <Button component="a" href="/user/logs">
-                  View Climb Logs
-                </Button>
-                <Button component="a" href="/user/settings">
-                  Settings
-                </Button>
-              </SimpleGrid>
+              {!session ? (
+                <LoginButton />
+              ) : (
+                <SimpleGrid>
+                  <Button component="a" href="/admin">
+                    Gym Admin Page
+                  </Button>
+                  <Button component="a" href="/user/home">
+                    View Home Gym
+                  </Button>
+                  <Button component="a" href="/user/logs">
+                    View Climb Logs
+                  </Button>
+                  <Button component="a" href="/user/settings">
+                    Settings
+                  </Button>
+                  <LoginButton />
+                </SimpleGrid>
+              )}
             </Aside.Section>
-            <Aside.Section>{<LoginButton />}</Aside.Section>
+            <Aside.Section>{}</Aside.Section>
           </Aside>
         }
         styles={(theme) => ({

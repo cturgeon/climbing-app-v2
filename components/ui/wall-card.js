@@ -39,7 +39,7 @@ export default function WallCard(props) {
           component="a"
           href={`/${gymId}/${id}`}
         >
-          Click me
+          Go to {`${name}`}
         </Button>
       </Card>
     </div>
