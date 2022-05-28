@@ -1,18 +1,34 @@
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+// import clientPromise from "./lib/mongodb";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default NextAuth({
-  // Configure one or more authentication providers
+  adapter: PrismaAdapter(prisma),
+  // adapter: MongoDBAdapter(clientPromise),
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    // ...add more providers here
   ],
+  callbacks: {
+    async jwt(token, user) {
+      if (user?.role) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session(session, token) {
+      if (token?.role) {
+        session.user.role = token.role;
+      }
+      return session;
+    },
+  },
+  secret: process.env.SECRET,
 });
