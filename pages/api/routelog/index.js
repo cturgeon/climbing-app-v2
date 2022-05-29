@@ -15,28 +15,38 @@ async function createLog(req, res) {
     where: { email: session.user.email },
   });
 
-  if (!req.body.attempts || !req.body.grade || !req.body.wallName) {
-    res.status(500).json({ error: "missing data" });
-  }
+  //   console.log(req.body);
+  //   if (!req.body.attempts || !req.body.grade || !req.body.wallName) {
+  //     return res.status(500).json({ error: "missing data" });
+  //   }
 
-  const log = await prisma.log.create({
+  const log = await prisma.user.update({
+    where: {
+      email: user.email,
+    },
     data: {
-      userId: user.id,
-      attempts: req.body.attempts,
-      grade: req.body.grade,
-      wall: req.body.wallName,
+      Log: {
+        create: {
+          attempts: req.body.attempts,
+          grade: req.body.grade,
+          wall: req.body.wallName,
+        },
+      },
     },
   });
 
   if (log.id) {
-    res.status(200).json({ message: "Log added" });
+    return res.status(200).json({ message: "Log added" });
   } else {
-    res.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: "Something went wrong" });
   }
 }
 
 export default function handler(req, res) {
   if (req.method === "POST") {
     return createLog(req, res);
+  }
+  if (req.method === "GET") {
+    return res.status(200).json({ message: "hi" });
   }
 }
