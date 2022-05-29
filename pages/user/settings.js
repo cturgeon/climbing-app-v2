@@ -1,12 +1,27 @@
 import { useSession } from "next-auth/react";
+import { Button } from "@mantine/core";
 
 export default function UserSettingsPage() {
-  const { data: session, status } = useSession();
-  console.log(session);
-
+  const { data: session } = useSession();
+  if (session?.user?.email === "casey.turgeon@gmail.com") {
+    return (
+      <>
+        <div>
+          <p></p>
+        </div>
+        <Button component="a" href="/admin">
+          Admin Stuff
+        </Button>
+      </>
+    );
+  }
   return (
-    <div>
-      <h1>To be added!</h1>
-    </div>
+    <>
+      Send some feedback <br />
+      <form>
+        <label>Comment</label>
+        <textarea></textarea>
+      </form>
+    </>
   );
 }

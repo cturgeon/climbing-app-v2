@@ -45,4 +45,15 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   role          String    @default("user")
+  Log           Log[]
+}
+
+model Log {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  wall      String
+  grade     String
+  attempts  Int
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -13,7 +13,7 @@ import ClimbLogModal from "./climb-log-modal";
 
 // props from ClimbItem <- ClimbList <-[wallId]
 export default function ClimbCard(props) {
-  const { id, name, grade, description, image, color } = props;
+  const { id, name, grade, description, image, color, wall } = props;
   const theme = useMantineTheme();
 
   const secondaryColor =

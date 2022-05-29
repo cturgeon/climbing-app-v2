@@ -74,9 +74,6 @@ export default function AppShellComponent(props) {
                 <LoginButton />
               ) : (
                 <SimpleGrid>
-                  <Button component="a" href="/admin">
-                    Gym Admin Page
-                  </Button>
                   <Button component="a" href="/user/home">
                     View Home Gym
                   </Button>

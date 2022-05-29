@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { Modal, Button, Group, Text, Grid, Title } from "@mantine/core";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
@@ -6,7 +7,9 @@ export default function ClimbLogModal(props) {
   const [opened, setOpened] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
-  const { id, name, grade, description, image, color } = props.items;
+  const { id, name, grade, description, image, color, wall } = props.items;
+
+  // TODO: add session tracker, change button for submit depending session
 
   function increaseAttempts() {
     setAttempts(++attempts);
@@ -21,6 +24,27 @@ export default function ClimbLogModal(props) {
     setAttempts(0);
   }
 
+  async function submitHandler(event) {
+    event.preventDefault();
+
+    const logData = {
+      attempts,
+      grade,
+      wallName: wall.name,
+    };
+
+    fetch("/api/routelog", {
+      method: "POST",
+      body: JSON.stringify(logData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    clearHandler();
+    setOpened(false);
+  }
+
   return (
     <>
       <Modal
@@ -30,7 +54,7 @@ export default function ClimbLogModal(props) {
       >
         {
           <div>
-            <form>
+            <form onSubmit={submitHandler}>
               <Grid justify="space-between">
                 <Title>{name}</Title>
                 <Group>
@@ -74,20 +98,25 @@ export default function ClimbLogModal(props) {
               >
                 -
               </Button>
+              <Grid justify="space-between">
+                <Button
+                  variant="light"
+                  color="blue"
+                  style={{ marginTop: 14 }}
+                  onClick={clearHandler}
+                >
+                  Clear
+                </Button>
+                <Button
+                  type="submit"
+                  variant="light"
+                  color="blue"
+                  style={{ marginTop: 14 }}
+                >
+                  Submit
+                </Button>
+              </Grid>
             </form>
-            <Grid justify="space-between">
-              <Button
-                variant="light"
-                color="blue"
-                style={{ marginTop: 14 }}
-                onClick={clearHandler}
-              >
-                Clear
-              </Button>
-              <Button variant="light" color="blue" style={{ marginTop: 14 }}>
-                Submit
-              </Button>
-            </Grid>
           </div>
         }
       </Modal>

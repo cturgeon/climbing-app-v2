@@ -1,10 +1,19 @@
+import { useSession } from "next-auth/react";
 import { Fragment } from "react";
+
+import { Box, Button, List } from "@mantine/core";
+
 import AdminPageComponent from "../../components/admin/admin";
 import { connectToDatabase, getAllGymData } from "../../helpers/db-util";
-import { Box, Button, List } from "@mantine/core";
 
 export default function AdminPage(props) {
   const { gymData } = props;
+
+  const { data: session, status } = useSession();
+
+  if (!session || session?.user !== "admin") {
+    return <p>This content can only be accessed by Admin users</p>;
+  }
 
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">

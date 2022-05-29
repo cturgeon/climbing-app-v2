@@ -6,6 +6,7 @@ import ClimbCard from "./climb-card";
 // props from [wallId]
 export default function ClimbList(props) {
   const climbingRoutes = props.items;
+  const wall = props.wall;
 
   const climbs = [];
   for (let key in climbingRoutes) {
@@ -31,6 +32,7 @@ export default function ClimbList(props) {
               grade={route.grade}
               description={route.description}
               color={route.color}
+              wall={wall}
             />
           </ClimbItem>
         ))}
