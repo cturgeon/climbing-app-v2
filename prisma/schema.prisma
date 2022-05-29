@@ -46,6 +46,7 @@ model User {
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   role          String    @default("user")
   Log           Log[]
+  Gym           Gym[]
 }
 
 model Log {
@@ -56,4 +57,11 @@ model Log {
   attempts  Int
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Gym {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gymId  String
 }
