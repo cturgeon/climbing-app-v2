@@ -5,14 +5,14 @@ export default function UserLogsPage() {
   const { data: session, loading } = useSession();
   const [userLogData, setUserLogData] = useState();
 
-  if (loading) {
-    return <p>loading...</p>;
-  }
   useEffect(() => {
     fetch("/api/logs")
       .then((res) => res.json())
       .then((data) => setUserLogData(data));
   }, []);
+  if (loading) {
+    return <p>loading...</p>;
+  }
 
   return (
     <div>
