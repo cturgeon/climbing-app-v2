@@ -27,7 +27,7 @@ export default function UserSettingsPage() {
   }, []);
 
   if (!gymData) {
-    return <p>loading...</p>;
+    return null;
   }
 
   const selectData = [];

@@ -1,8 +1,6 @@
 import { getSession } from "next-auth/react";
 
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../prisma/db";
 
 async function createLog(req, res) {
   const session = await getSession({ req });
@@ -14,11 +12,6 @@ async function createLog(req, res) {
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
   });
-
-  //   console.log(req.body);
-  //   if (!req.body.attempts || !req.body.grade || !req.body.wallName) {
-  //     return res.status(500).json({ error: "missing data" });
-  //   }
 
   const log = await prisma.user.update({
     where: {

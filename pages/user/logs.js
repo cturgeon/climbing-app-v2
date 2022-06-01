@@ -1,25 +1,23 @@
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { PrismaClient } from "@prisma/client";
+import { getSession } from "next-auth/react";
 
-export default function UserLogsPage() {
+const prisma = new PrismaClient();
+
+export default function UserLogsPage(props) {
   const { data: session, loading } = useSession();
-  const [userLogData, setUserLogData] = useState();
+  const userLogData = JSON.parse(props.data);
 
-  useEffect(() => {
-    fetch("/api/logs")
-      .then((res) => res.json())
-      .then((data) => setUserLogData(data));
-  }, []);
-  if (loading) {
-    return <p>loading...</p>;
+  if (!session || loading) {
+    return null;
   }
 
   return (
     <div>
       <h1>See your stats below!</h1>
-      {userLogData && (
+      {userLogData.length > 0 && (
         <ul>
-          {userLogData.logs.map((log) => (
+          {userLogData.map((log) => (
             <li key={log.id}>
               <p>
                 {log.grade} : {log.attempts} attempts
@@ -30,4 +28,19 @@ export default function UserLogsPage() {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  try {
+    const logs = await prisma.log.findMany({
+      where: {
+        userId: session.user.userId,
+      },
+    });
+    return { props: { data: JSON.stringify(logs) } };
+  } catch (error) {
+    return res.status(500).json({ message: "User not found" });
+  }
 }
