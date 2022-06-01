@@ -9,9 +9,9 @@ import { connectToDatabase, getAllGymData } from "../../helpers/db-util";
 export default function AdminPage(props) {
   const { gymData } = props;
 
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
-  if (!session || session?.user !== "admin") {
+  if (!session || session.user?.email !== "casey.turgeon@gmail.com") {
     return <p>This content can only be accessed by Admin users</p>;
   }
 
