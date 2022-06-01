@@ -5,6 +5,7 @@ import {
   Button,
   Group,
   useMantineTheme,
+  Box,
 } from "@mantine/core";
 
 export default function WallCard(props) {
@@ -15,23 +16,21 @@ export default function WallCard(props) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div styles={{}}>
-      <Card shadow="sm" p="lg">
+    <>
+      <Card
+        shadow="sm"
+        p="lg"
+        component="a"
+        href={`/${gymId}/${id}`}
+        style={{ marginBottom: 20 }}
+      >
         <Card.Section>
-          {/* TODO change after adding my own images */}
-          <Image src={image} height={200} alt={id} />
+          <Image src={image} alt={id} fit="contain" />
+          <Text align="center" weight={500} size="lg">
+            Go to the {`${name}`} wall
+          </Text>
         </Card.Section>
-        <Button
-          variant="light"
-          color="blue"
-          fullWidth
-          style={{ marginTop: 14 }}
-          component="a"
-          href={`/${gymId}/${id}`}
-        >
-          Go to {`${name}`}
-        </Button>
       </Card>
-    </div>
+    </>
   );
 }

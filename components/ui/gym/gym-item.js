@@ -5,7 +5,7 @@ import GymCard from "./gym-card";
 export default function GymItem(props) {
   const { id, name, description, image, address } = props;
   return (
-    <div>
+    <>
       <GymCard
         id={id}
         name={name}
@@ -13,6 +13,6 @@ export default function GymItem(props) {
         image={image}
         address={address}
       />
-    </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import { Box } from "@mantine/core";
 import WallItem from "./wall-item";
 
 export default function WallList(props) {
@@ -13,15 +14,17 @@ export default function WallList(props) {
     return <p>loading... </p>;
   }
   return (
-    <ul style={{ padding: 0 }}>
-      {walls.map((wall) => (
-        <WallItem
-          key={wall.id}
-          id={wall.id}
-          image={wall.image}
-          name={wall.name}
-        />
-      ))}
-    </ul>
+    <Box>
+      <ul style={{ padding: 0 }}>
+        {walls.map((wall) => (
+          <WallItem
+            key={wall.id}
+            id={wall.id}
+            image={wall.image}
+            name={wall.name}
+          />
+        ))}
+      </ul>
+    </Box>
   );
 }

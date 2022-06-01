@@ -15,10 +15,10 @@ export default function GymCard(props) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <div>
+    <>
       <Card shadow="sm" p="lg">
         <Card.Section>
-          <Image src={image} height={200} alt={id} />
+          <Image src={image} alt={id} />
         </Card.Section>
 
         <Group
@@ -43,6 +43,6 @@ export default function GymCard(props) {
           View Gym
         </Button>
       </Card>
-    </div>
+    </>
   );
 }

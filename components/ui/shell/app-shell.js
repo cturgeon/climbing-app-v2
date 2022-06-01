@@ -13,6 +13,7 @@ import {
   SimpleGrid,
   Grid,
   Aside,
+  Box,
 } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
@@ -108,7 +109,11 @@ export default function AppShellComponent(props) {
             colorScheme: "light",
           }}
         >
-          <NotificationsProvider>{props.children}</NotificationsProvider>
+          <NotificationsProvider>
+            <Box sx={{ maxWidth: 700 }} mx="auto">
+              {props.children}
+            </Box>
+          </NotificationsProvider>
         </MantineProvider>
       </AppShell>
     </>

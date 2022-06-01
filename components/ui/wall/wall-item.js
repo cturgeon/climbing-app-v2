@@ -9,10 +9,8 @@ export default function WallItem(props) {
   const router = useRouter();
   const gym = router.query.gymId;
   return (
-    <div>
-      <div>
-        <WallCard id={id} name={name} image={image} gymId={gym} />
-      </div>
-    </div>
+    <>
+      <WallCard id={id} name={name} image={image} gymId={gym} />
+    </>
   );
 }

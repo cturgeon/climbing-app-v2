@@ -6,7 +6,7 @@ export default function GymHeader(props) {
     <>
       <div style={{ marginLeft: "auto", marginRight: "auto" }}>
         <Stack align="center">
-          <Image alt={id} radius="md" src={image} height={300} />
+          <Image alt={id} radius="md" src={image} />
           <Text>{name}</Text>
           <Text>{address}</Text>
           <Text>{description}</Text>

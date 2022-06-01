@@ -90,7 +90,7 @@ export default function ClimbLogModal(props) {
         title="Log your climb"
       >
         {
-          <div>
+          <>
             <form onSubmit={submitHandler}>
               <Grid justify="space-between">
                 <Title>{name}</Title>
@@ -164,7 +164,7 @@ export default function ClimbLogModal(props) {
                 </Button>
               </Grid>
             </form>
-          </div>
+          </>
         }
       </Modal>
 
