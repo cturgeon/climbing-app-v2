@@ -27,6 +27,7 @@ export default function SpecificWall(props) {
 export async function getServerSideProps(context) {
   const gymId = context.params.gymId;
   const wallId = context.params.wallId;
+  console.log(gymId);
   let client;
   client = await connectToDatabase();
   const gym = await getGymById(client, "gym-data", {

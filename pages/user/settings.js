@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@mantine/core";
 
 import dynamic from "next/dynamic";
-const DynamicComponent = dynamic(() =>
+const HomeGymSettings = dynamic(() =>
   import("../../components/settings/home-gym")
 );
 export default function UserSettingsPage() {
@@ -11,7 +11,7 @@ export default function UserSettingsPage() {
 
   return (
     <>
-      <DynamicComponent />
+      <HomeGymSettings />
       <>
         <h3>Send some feedback</h3>
         <form>
