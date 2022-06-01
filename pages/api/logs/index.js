@@ -6,8 +6,6 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   const session = await getSession({ req });
 
-  console.log(session);
-
   if (req.method === "GET") {
     try {
       const logs = await prisma.log.findMany({

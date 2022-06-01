@@ -1,11 +1,10 @@
 import { ObjectId } from "mongodb";
+
 import {
   connectToDatabase,
   insertGym,
   deleteGym,
   getAllGymData,
-  getGymById,
-  updateGym,
 } from "../../helpers/db-util";
 
 export default async function handler(req, res) {

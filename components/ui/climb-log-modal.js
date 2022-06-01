@@ -1,6 +1,15 @@
 import { useState } from "react";
 
-import { Modal, Button, Group, Text, Grid, Title } from "@mantine/core";
+import {
+  Modal,
+  Button,
+  Group,
+  Text,
+  Grid,
+  Title,
+  Box,
+  SimpleGrid,
+} from "@mantine/core";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbLogModal(props) {
@@ -86,18 +95,28 @@ export default function ClimbLogModal(props) {
                   {description}
                 </Text>
               </Grid>
-              <Text>Attempts: {attempts === 0 ? "Flash" : attempts}</Text>
-              <Button color="teal" type="button" onClick={increaseAttempts}>
-                +
-              </Button>
-              <Button
-                compact
-                variant="outline"
-                type="button"
-                onClick={decreaseAttempts}
-              >
-                -
-              </Button>
+              <Text align="center">Attempts:</Text>
+              <Text align="center" size="xl" weight={600}>
+                {attempts === 0 ? "Flash" : attempts}
+              </Text>
+              <SimpleGrid>
+                <Button
+                  size="xl"
+                  color="teal"
+                  type="button"
+                  onClick={increaseAttempts}
+                >
+                  +
+                </Button>
+                <Button
+                  compact
+                  variant="outline"
+                  type="button"
+                  onClick={decreaseAttempts}
+                >
+                  -
+                </Button>
+              </SimpleGrid>
               <Grid justify="space-between">
                 <Button
                   variant="light"

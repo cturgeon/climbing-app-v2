@@ -21,16 +21,6 @@ export default function WallCard(props) {
           {/* TODO change after adding my own images */}
           <Image src={image} height={200} alt={id} />
         </Card.Section>
-
-        <Group
-          position="apart"
-          style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
-        >
-          <Text weight={500} style={{ color: secondaryColor, lineHeight: 1.5 }}>
-            {name}
-          </Text>
-        </Group>
-
         <Button
           variant="light"
           color="blue"
