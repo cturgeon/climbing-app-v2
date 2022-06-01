@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   const session = await getSession({ req });
+
   console.log(session);
 
   if (req.method === "GET") {
@@ -16,7 +17,7 @@ export default async function handler(req, res) {
       });
       return res.status(201).json({ logs: logs });
     } catch (error) {
-      return res.status(500).json({ message: "User not found" });
+      return res.status(500).json({ message: session });
     }
   }
 }
