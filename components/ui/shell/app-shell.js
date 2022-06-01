@@ -14,6 +14,7 @@ import {
   Grid,
   Aside,
 } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 import LoginButton from "../../auth/login-btn";
 
@@ -107,7 +108,7 @@ export default function AppShellComponent(props) {
             colorScheme: "light",
           }}
         >
-          {props.children}
+          <NotificationsProvider>{props.children}</NotificationsProvider>
         </MantineProvider>
       </AppShell>
     </>

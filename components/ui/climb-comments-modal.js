@@ -8,6 +8,21 @@ export default function ClimbCommentsModal(props) {
 
   const { id, name, grade, description, image } = props.items;
 
+  function submitHandler(event) {
+    event.preventDefault();
+
+    const commentData = {
+      comment: "",
+    };
+
+    showNotification({
+      icon: <Check size={18} />,
+      title: `You sent ${name}`,
+      message: "We logged your climb. Keep crushing! ",
+      autoClose: 4000,
+    });
+  }
+
   return (
     <>
       <Modal
@@ -17,7 +32,7 @@ export default function ClimbCommentsModal(props) {
       >
         {
           <Box>
-            <form>
+            <form onSubmit={submitHandler}>
               <Textarea
                 placeholder="Talk beta or add a comment"
                 label="Your Comment"

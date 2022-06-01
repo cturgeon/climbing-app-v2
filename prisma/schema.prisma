@@ -47,6 +47,7 @@ model User {
   role          String    @default("user")
   Log           Log[]
   Gym           Gym[]
+  Comment       Comment[]
 }
 
 model Log {
@@ -64,4 +65,13 @@ model Gym {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   gymId  String
+}
+
+model Comment {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment String
+  wall    String
+  climb   String
 }

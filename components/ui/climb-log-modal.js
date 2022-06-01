@@ -10,6 +10,8 @@ import {
   Box,
   SimpleGrid,
 } from "@mantine/core";
+import { showNotification, updateNotification } from "@mantine/notifications";
+import { Check } from "tabler-icons-react";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbLogModal(props) {
@@ -35,23 +37,48 @@ export default function ClimbLogModal(props) {
 
   async function submitHandler(event) {
     event.preventDefault();
-
-    const logData = {
-      attempts,
-      grade,
-      wallName: wall.name,
-    };
-
-    fetch("/api/routelog", {
-      method: "POST",
-      body: JSON.stringify(logData),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    showNotification({
+      id: "load-data",
+      loading: true,
+      title: `Loading`,
+      message: "Adding your climb",
+      autoClose: false,
+      disallowClose: true,
     });
 
-    clearHandler();
-    setOpened(false);
+    try {
+      const logData = {
+        attempts,
+        grade,
+        wallName: wall.name,
+      };
+
+      await fetch("/api/routelog", {
+        method: "POST",
+        body: JSON.stringify(logData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      updateNotification({
+        id: "load-data",
+        icon: <Check size={18} />,
+        title: `You sent ${name}`,
+        message: "We logged your climb. Keep crushing! ",
+        autoClose: 4000,
+      });
+      clearHandler();
+      setOpened(false);
+    } catch (error) {
+      updateNotification({
+        id: "load-data",
+
+        title: "Bummer!",
+        message: "Failed to add your climb",
+        color: "red",
+      });
+    }
   }
 
   return (
