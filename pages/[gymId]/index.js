@@ -8,8 +8,8 @@ import {
   getGymIds,
   getGymById,
 } from "../../helpers/db-util";
-import GymHeader from "../../components/ui/gym-header";
-import WallList from "../../components/ui/wall-list";
+import GymHeader from "../../components/ui/gym/gym-header";
+import WallList from "../../components/ui/wall/wall-list";
 
 export default function SpecificGym(props) {
   const gym = props.gym;

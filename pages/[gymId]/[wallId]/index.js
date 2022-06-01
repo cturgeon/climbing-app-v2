@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { Title } from "@mantine/core";
 
 import { connectToDatabase, getGymById } from "../../../helpers/db-util";
-import ClimbList from "../../../components/ui/climb-list";
+import ClimbList from "../../../components/ui/climb/climb-list";
 
 export default function SpecificWall(props) {
   const { wall } = props;
@@ -27,7 +27,6 @@ export default function SpecificWall(props) {
 export async function getServerSideProps(context) {
   const gymId = context.params.gymId;
   const wallId = context.params.wallId;
-  console.log(gymId);
   let client;
   client = await connectToDatabase();
   const gym = await getGymById(client, "gym-data", {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 import {
   Modal,
@@ -17,6 +18,7 @@ import { Check } from "tabler-icons-react";
 export default function ClimbLogModal(props) {
   const [opened, setOpened] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const { data: session } = useSession();
 
   const { id, name, grade, description, image, color, wall } = props.items;
 
@@ -73,7 +75,6 @@ export default function ClimbLogModal(props) {
     } catch (error) {
       updateNotification({
         id: "load-data",
-
         title: "Bummer!",
         message: "Failed to add your climb",
         color: "red",
@@ -173,6 +174,7 @@ export default function ClimbLogModal(props) {
           fullWidth
           style={{ marginTop: 14 }}
           onClick={() => setOpened(true)}
+          disabled={!session}
         >
           Log Climb
         </Button>

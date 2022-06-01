@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Text, Group } from "@mantine/core";
 
 import { connectToDatabase, getAllGymData } from "../helpers/db-util";
-import GymList from "../components/ui/gym-list";
+import GymList from "../components/ui/gym/gym-list";
 
 export default function Home(props) {
   const { gymData } = props;
