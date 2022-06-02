@@ -10,6 +10,7 @@ import {
 
 import ClimbCommentsModal from "./climb-comments-modal";
 import ClimbLogModal from "./climb-log-modal";
+import ClimbSendModal from "./climb-sends";
 
 // props from ClimbItem <- ClimbList <-[wallId]
 export default function ClimbCard(props) {
@@ -40,10 +41,17 @@ export default function ClimbCard(props) {
           {description}
         </Text>
 
-        <Grid justify="space-between">
-          <ClimbCommentsModal items={props} />
-          <ClimbLogModal items={props} />
+        <Grid justify="space-around">
+          <div style={{ width: 110 }}>
+            <ClimbCommentsModal items={props} />
+          </div>
+          <div style={{ width: 110 }}>
+            <ClimbSendModal items={props} />
+          </div>
         </Grid>
+        <div align="center">
+          <ClimbLogModal items={props} />
+        </div>
       </Card>
     </Box>
   );

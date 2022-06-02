@@ -4,17 +4,13 @@ import { Modal, Button, Group, Textarea, Box } from "@mantine/core";
 import { Check } from "tabler-icons-react";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
-export default function ClimbCommentsModal(props) {
+export default function ClimbSendModal(props) {
   const [opened, setOpened] = useState(false);
 
   const { id, name, grade, description, image } = props.items;
 
   function submitHandler(event) {
     event.preventDefault();
-
-    const commentData = {
-      comment: "",
-    };
 
     showNotification({
       icon: <Check size={18} />,
@@ -51,7 +47,7 @@ export default function ClimbCommentsModal(props) {
         fullWidth
         variant="outline"
       >
-        Comments
+        Sends
       </Button>
     </>
   );

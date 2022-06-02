@@ -170,18 +170,15 @@ export default function ClimbLogModal(props) {
           </>
         }
       </Modal>
-
-      <Group position="center">
-        <Button
-          color="blue"
-          fullWidth
-          style={{ marginTop: 14 }}
-          onClick={() => setOpened(true)}
-          disabled={!session}
-        >
-          Log Climb
-        </Button>
-      </Group>
+      <Button
+        color="blue"
+        style={{ marginTop: 14 }}
+        onClick={() => setOpened(true)}
+        disabled={!session}
+        fullWidth
+      >
+        Log Climb
+      </Button>
     </>
   );
 }
