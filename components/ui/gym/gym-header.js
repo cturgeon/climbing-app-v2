@@ -1,7 +1,7 @@
 import { Image, Stack, Text, Divider } from "@mantine/core";
 
 export default function GymHeader(props) {
-  const { id, name, image, description, address } = props;
+  const { id, name, image, description, address } = props.items;
   return (
     <>
       <div style={{ marginLeft: "auto", marginRight: "auto" }}>

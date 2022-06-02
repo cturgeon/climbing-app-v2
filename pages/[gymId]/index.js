@@ -21,14 +21,7 @@ export default function SpecificGym(props) {
     <div>
       <Group direction="column" position="center">
         <Fragment>
-          <GymHeader
-            key={gym._id}
-            id={gym._id}
-            name={gym.name}
-            description={gym.description}
-            image={gym.image}
-            address={gym.address}
-          />
+          <GymHeader items={gym} />
           <WallList items={gym.walls} />
         </Fragment>
       </Group>
