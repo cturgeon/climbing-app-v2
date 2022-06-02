@@ -11,7 +11,7 @@ export default function Home(props) {
     <Group direction="column" position="center">
       <Fragment>
         <Text size="md" transform="capitalize">
-          You can begin by selecting a gym below
+          Click a gym to get logging!
         </Text>
         <GymList items={gymData} />
       </Fragment>

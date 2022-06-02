@@ -135,7 +135,7 @@ export default function ClimbLogModal(props) {
                     style={{
                       width: "100%",
                       height: "100%",
-                      "font-size": "50px",
+                      fontSize: "50px",
                     }}
                   >
                     +
