@@ -5,6 +5,7 @@ import {
   Button,
   Group,
   useMantineTheme,
+  Grid,
 } from "@mantine/core";
 
 export default function GymCard(props) {
@@ -16,32 +17,20 @@ export default function GymCard(props) {
 
   return (
     <>
-      <Card shadow="sm" p="lg">
+      <Card shadow="sm" p="lg" component="a" href={`/${id}`}>
         <Card.Section>
           <Image src={image} alt={id} />
         </Card.Section>
-
-        <Group
-          position="apart"
+        <Text
+          align="center"
+          weight={500}
           style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
         >
-          <Text weight={500}>{name}</Text>
-        </Group>
-
-        <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+          {name}
+        </Text>
+        <Text align="center" weight={300}>
           {description}
         </Text>
-
-        <Button
-          variant="light"
-          color="blue"
-          fullWidth
-          style={{ marginTop: 14 }}
-          component="a"
-          href={`/${id}`}
-        >
-          View Gym
-        </Button>
       </Card>
     </>
   );

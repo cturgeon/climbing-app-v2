@@ -54,7 +54,7 @@ export default function ClimbLogModal(props) {
         wallName: wall.name,
       };
 
-      await fetch("/api/routelog", {
+      fetch("/api/routelog", {
         method: "POST",
         body: JSON.stringify(logData),
         headers: {
@@ -127,22 +127,31 @@ export default function ClimbLogModal(props) {
                 {attempts === 0 ? "Flash" : attempts}
               </Text>
               <SimpleGrid>
-                <Button
-                  size="xl"
-                  color="teal"
-                  type="button"
-                  onClick={increaseAttempts}
-                >
-                  +
-                </Button>
-                <Button
-                  compact
-                  variant="outline"
-                  type="button"
-                  onClick={decreaseAttempts}
-                >
-                  -
-                </Button>
+                <div style={{ height: 150 }}>
+                  <Button
+                    color="teal"
+                    type="button"
+                    onClick={increaseAttempts}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      "font-size": "50px",
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+                <div style={{ marginBottom: 30 }}>
+                  <Button
+                    compact
+                    variant="outline"
+                    type="button"
+                    onClick={decreaseAttempts}
+                    fullWidth
+                  >
+                    -
+                  </Button>
+                </div>
               </SimpleGrid>
               <Grid justify="space-between">
                 <Button
@@ -153,12 +162,7 @@ export default function ClimbLogModal(props) {
                 >
                   Clear
                 </Button>
-                <Button
-                  type="submit"
-                  variant="light"
-                  color="blue"
-                  style={{ marginTop: 14 }}
-                >
+                <Button type="submit" color="blue" style={{ marginTop: 14 }}>
                   Submit
                 </Button>
               </Grid>
