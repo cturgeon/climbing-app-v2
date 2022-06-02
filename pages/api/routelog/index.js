@@ -35,11 +35,28 @@ async function createLog(req, res) {
   }
 }
 
+async function getLogs(req, res) {
+  const session = await getSession({ req });
+
+  if (req.method === "GET") {
+    try {
+      const logs = await prisma.log.findMany({
+        where: {
+          userId: session.user.userId,
+        },
+      });
+      return res.status(201).json({ logs: logs });
+    } catch (error) {
+      return res.status(500).json({ message: session });
+    }
+  }
+}
+
 export default function handler(req, res) {
   if (req.method === "POST") {
     return createLog(req, res);
   }
   if (req.method === "GET") {
-    return res.status(200).json({ message: "hi" });
+    return getLogs(req, res);
   }
 }

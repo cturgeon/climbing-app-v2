@@ -25,10 +25,10 @@ export default function WallCard(props) {
         style={{ marginBottom: 20 }}
       >
         <Card.Section>
-          <Image src={image} alt={id} fit="contain" />
           <Text align="center" weight={500} size="lg">
             Go to the {`${name}`} wall
           </Text>
+          <Image src={image} alt={id} fit="contain" />
         </Card.Section>
       </Card>
     </>
