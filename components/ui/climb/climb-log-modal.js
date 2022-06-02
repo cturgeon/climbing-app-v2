@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { Check } from "tabler-icons-react";
 
 import {
   Modal,
@@ -8,11 +9,9 @@ import {
   Text,
   Grid,
   Title,
-  Box,
   SimpleGrid,
 } from "@mantine/core";
 import { showNotification, updateNotification } from "@mantine/notifications";
-import { Check } from "tabler-icons-react";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbLogModal(props) {

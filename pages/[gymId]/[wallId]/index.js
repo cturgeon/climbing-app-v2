@@ -1,9 +1,13 @@
 import { ObjectId } from "mongodb";
 
+import dynamic from "next/dynamic";
+const ClimbList = dynamic(() =>
+  import("../../../components/ui/climb/climb-list")
+);
+
 import { Title } from "@mantine/core";
 
 import { connectToDatabase, getGymById } from "../../../helpers/db-util";
-import ClimbList from "../../../components/ui/climb/climb-list";
 
 export default function SpecificWall(props) {
   const { wall } = props;
