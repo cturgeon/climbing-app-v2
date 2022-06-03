@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import { Modal, Button, Group, Textarea, Box } from "@mantine/core";
+import { Modal, Button, Group, Text, Box } from "@mantine/core";
 import { Check } from "tabler-icons-react";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
