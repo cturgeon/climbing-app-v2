@@ -47,7 +47,6 @@ model User {
   role          String    @default("user")
   Log           Log[]
   Gym           Gym[]
-  Comment       Comment[]
 }
 
 model Log {
@@ -68,10 +67,18 @@ model Gym {
 }
 
 model Comment {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  comment String
-  wall    String
-  climb   String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  comment   String
+  climbId   String
+  Climb     Climb    @relation(fields: [climbId], references: [id])
+}
+
+model Climb {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  wallId  String
+  gymId   String
+  climbId String
+  Comment Comment[]
 }

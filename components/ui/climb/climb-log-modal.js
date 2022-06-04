@@ -21,8 +21,6 @@ export default function ClimbLogModal(props) {
 
   const { id, name, grade, description, image, color, wall } = props.items;
 
-  // TODO: add session tracker, change button for submit depending session
-
   function increaseAttempts() {
     setAttempts(++attempts);
   }

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 import {
-  MantineProvider,
   AppShell,
   Header,
   MediaQuery,
@@ -15,7 +14,6 @@ import {
   Aside,
   Box,
 } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
 
 import LoginButton from "../../auth/login-btn";
 
@@ -101,20 +99,9 @@ export default function AppShellComponent(props) {
           },
         })}
       >
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{
-            /** Put your mantine theme override here */
-            colorScheme: "light",
-          }}
-        >
-          <NotificationsProvider>
-            <Box sx={{ maxWidth: 700 }} mx="auto">
-              {props.children}
-            </Box>
-          </NotificationsProvider>
-        </MantineProvider>
+        <Box sx={{ maxWidth: 700 }} mx="auto">
+          {props.children}
+        </Box>
       </AppShell>
     </>
   );

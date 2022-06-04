@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 import { Modal, Button, Group, Textarea, Box } from "@mantine/core";
 import { Check } from "tabler-icons-react";
@@ -6,6 +6,7 @@ import { Check } from "tabler-icons-react";
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbCommentsModal(props) {
   const [opened, setOpened] = useState(false);
+  const enteredComment = useRef();
 
   const { id, name, grade, description, image } = props.items;
 
@@ -13,7 +14,7 @@ export default function ClimbCommentsModal(props) {
     event.preventDefault();
 
     const commentData = {
-      comment: "",
+      comment: enteredComment.current.value,
     };
 
     showNotification({
@@ -38,6 +39,7 @@ export default function ClimbCommentsModal(props) {
                 placeholder="Talk beta or add a comment"
                 label="Your Comment"
                 required
+                ref={enteredComment}
               />
               <Button type="submit">Add comment</Button>
             </form>
