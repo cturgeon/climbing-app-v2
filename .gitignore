@@ -36,3 +36,12 @@ yarn-error.log*
 
 # storybook
 storybook-static
+
+
+node_modules
+next.config.js
+.next.config.js
+.next
+.env.local
+.vercel
+.env
