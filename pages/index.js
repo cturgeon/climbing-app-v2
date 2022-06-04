@@ -1,9 +1,9 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Text, Group } from "@mantine/core";
+import { Text, Group } from '@mantine/core';
 
-import { connectToDatabase, getAllGymData } from "../helpers/db-util";
-import GymList from "../components/ui/gym/gym-list";
+import { connectToDatabase, getAllGymData } from '../helpers/db-util';
+import GymList from '../components/ui/gym/gym-list';
 
 export default function Home(props) {
   const { gymData } = props;
@@ -24,7 +24,7 @@ export async function getStaticProps() {
   let client;
   try {
     client = await connectToDatabase();
-    const gymData = await getAllGymData(client, "gym-data", { _id: -1 });
+    const gymData = await getAllGymData(client, 'gym-data', { _id: -1 });
     return {
       props: {
         gymData: JSON.parse(JSON.stringify(gymData)),

@@ -1,13 +1,11 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
-import dynamic from "next/dynamic";
-const ClimbList = dynamic(() =>
-  import("../../../components/ui/climb/climb-list")
-);
+import dynamic from 'next/dynamic';
+const ClimbList = dynamic(() => import('../../../components/ui/climb/climb-list'));
 
-import { Title } from "@mantine/core";
+import { Title } from '@mantine/core';
 
-import { connectToDatabase, getGymById } from "../../../helpers/db-util";
+import { connectToDatabase, getGymById } from '../../../helpers/db-util';
 
 export default function SpecificWall(props) {
   const { wall } = props;
@@ -33,7 +31,7 @@ export async function getServerSideProps(context) {
   const wallId = context.params.wallId;
   let client;
   client = await connectToDatabase();
-  const gym = await getGymById(client, "gym-data", {
+  const gym = await getGymById(client, 'gym-data', {
     _id: ObjectId(gymId),
   });
   const wall = gym.walls[wallId];
