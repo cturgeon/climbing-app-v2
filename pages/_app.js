@@ -1,16 +1,19 @@
-import { useState } from 'react';
-import { GetServerSidePropsContext } from 'next';
-import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
-import { getCookie, setCookies } from 'cookies-next';
-import Head from 'next/head';
+import { SessionProvider } from "next-auth/react";
+import Head from "next/head";
 
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
+import {
+  MantineProvider,
+  ColorScheme,
+  ColorSchemeProvider,
+} from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
-import AppShellComponent from '../components/ui/shell/app-shell';
+import AppShellComponent from "../components/ui/shell/app-shell";
 
-export default function App({ Component, pageProps: { session, ...pageProps } }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   // const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
   // const toggleColorScheme = (value?: ColorScheme) => {
@@ -23,7 +26,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     <>
       <Head>
         <title>Climb Logs</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
