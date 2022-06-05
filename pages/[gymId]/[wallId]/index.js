@@ -30,20 +30,26 @@ export async function getServerSideProps(context) {
   const gymId = context.params.gymId;
   const wallId = context.params.wallId;
   let client;
-  client = await connectToDatabase();
-  const gym = await getGymById(client, 'gym-data', {
-    _id: ObjectId(gymId),
-  });
-  const wall = gym.walls[wallId];
-  if (!wall) {
+  try {
+    client = await connectToDatabase();
+    const gym = await getGymById(client, 'gym-data', {
+      _id: ObjectId(gymId),
+    });
+    const wall = gym.walls[wallId];
+    if (!wall) {
+      return {
+        props: { hasError: true },
+      };
+    }
     return {
-      props: { hasError: true },
+      props: {
+        wall: wall,
+        revalidate: 60,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
     };
   }
-  return {
-    props: {
-      wall: wall,
-      revalidate: 60,
-    },
-  };
 }

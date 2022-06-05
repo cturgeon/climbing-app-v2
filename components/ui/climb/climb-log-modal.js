@@ -1,17 +1,9 @@
-import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { Check } from "tabler-icons-react";
+import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { Check } from 'tabler-icons-react';
 
-import {
-  Modal,
-  Button,
-  Group,
-  Text,
-  Grid,
-  Title,
-  SimpleGrid,
-} from "@mantine/core";
-import { showNotification, updateNotification } from "@mantine/notifications";
+import { Modal, Button, Group, Text, Grid, Title, SimpleGrid } from '@mantine/core';
+import { showNotification, updateNotification } from '@mantine/notifications';
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbLogModal(props) {
@@ -39,10 +31,10 @@ export default function ClimbLogModal(props) {
   async function submitHandler(event) {
     event.preventDefault();
     showNotification({
-      id: "load-data",
+      id: 'load-data',
       loading: true,
       title: `Loading`,
-      message: "Adding your climb",
+      message: 'Adding your climb',
       autoClose: false,
       disallowClose: true,
     });
@@ -54,40 +46,36 @@ export default function ClimbLogModal(props) {
         wallName: wall.name,
       };
 
-      fetch("/api/routelog", {
-        method: "POST",
+      fetch('/api/routelog', {
+        method: 'POST',
         body: JSON.stringify(logData),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
 
       updateNotification({
-        id: "load-data",
+        id: 'load-data',
         icon: <Check size={18} />,
         title: `You sent ${name}`,
-        message: "We logged your climb. Keep crushing! ",
+        message: 'We logged your climb. Keep crushing! ',
         autoClose: 4000,
       });
-      clearHandler();
-      setOpened(false);
     } catch (error) {
       updateNotification({
-        id: "load-data",
-        title: "Bummer!",
-        message: "Failed to add your climb",
-        color: "red",
+        id: 'load-data',
+        title: 'Bummer!',
+        message: 'Failed to add your climb',
+        color: 'red',
       });
     }
+    clearHandler();
+    setOpened(false);
   }
 
   return (
     <>
-      <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
-        title="Log your climb"
-      >
+      <Modal opened={opened} onClose={() => setOpened(false)} title="Log your climb">
         {
           <>
             <form onSubmit={submitHandler}>
@@ -97,8 +85,8 @@ export default function ClimbLogModal(props) {
                   <Text
                     style={{
                       marginLeft: 10,
-                      display: "flex",
-                      alignItems: "flex-end",
+                      display: 'flex',
+                      alignItems: 'flex-end',
                       bottom: 0,
                     }}
                   >
@@ -106,8 +94,8 @@ export default function ClimbLogModal(props) {
                   </Text>
                   <Text
                     style={{
-                      display: "flex",
-                      alignItems: "flex-end",
+                      display: 'flex',
+                      alignItems: 'flex-end',
                       bottom: 0,
                     }}
                   >
@@ -124,7 +112,7 @@ export default function ClimbLogModal(props) {
               </Grid>
               <Text align="center">Attempts:</Text>
               <Text align="center" size="xl" weight={600}>
-                {attempts === 0 ? "Flash" : attempts}
+                {attempts === 0 ? 'Flash' : attempts}
               </Text>
               <SimpleGrid>
                 <div style={{ height: 150 }}>
@@ -133,9 +121,9 @@ export default function ClimbLogModal(props) {
                     type="button"
                     onClick={increaseAttempts}
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      fontSize: "50px",
+                      width: '100%',
+                      height: '100%',
+                      fontSize: '50px',
                     }}
                   >
                     +

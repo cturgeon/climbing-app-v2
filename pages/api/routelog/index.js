@@ -1,6 +1,6 @@
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react';
 
-import { prisma } from "../../../prisma/db";
+import { prisma } from '../../../prisma/db';
 
 async function createLog(req, res) {
   const session = await getSession({ req });
@@ -29,16 +29,16 @@ async function createLog(req, res) {
   });
 
   if (log.id) {
-    return res.status(200).json({ message: "Log added" });
+    return res.status(200).json({ message: 'Log added' });
   } else {
-    return res.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
 async function getLogs(req, res) {
   const session = await getSession({ req });
 
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     try {
       const logs = await prisma.log.findMany({
         where: {
@@ -53,10 +53,10 @@ async function getLogs(req, res) {
 }
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     return createLog(req, res);
   }
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     return getLogs(req, res);
   }
 }
