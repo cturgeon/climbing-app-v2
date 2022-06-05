@@ -29,7 +29,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
 
       {/* <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}> */}
       <MantineProvider withGlobalStyles withNormalizeCSS>
-        <SessionProvider>
+        <SessionProvider session={session}>
           <NotificationsProvider>
             <AppShellComponent>
               <Component {...pageProps} />
