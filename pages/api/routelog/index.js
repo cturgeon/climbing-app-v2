@@ -1,6 +1,8 @@
 import { getSession } from 'next-auth/react';
 
-import { prisma } from '../../../prisma/db';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 async function createLog(req, res) {
   const session = await getSession({ req });
