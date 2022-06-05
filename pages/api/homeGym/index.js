@@ -1,7 +1,6 @@
-import { getSession } from "next-auth/react";
-import { PrismaClient } from "@prisma/client";
+import { getSession } from 'next-auth/react';
 
-const prisma = new PrismaClient();
+import { prisma } from '../../../prisma/db';
 
 async function setHomeGym(req, res) {
   const session = await getSession({ req });
@@ -28,17 +27,17 @@ async function setHomeGym(req, res) {
   });
 
   if (gym.id) {
-    return res.status(200).json({ message: "Gym added" });
+    return res.status(200).json({ message: 'Gym added' });
   } else {
-    return res.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 }
 
 export default function handler(req, res) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     return setHomeGym(req, res);
   }
-  if (req.method === "GET") {
-    return res.status(200).json({ message: "hi" });
+  if (req.method === 'GET') {
+    return res.status(200).json({ message: 'hi' });
   }
 }
