@@ -1,11 +1,9 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 // import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 // import clientPromise from "./lib/mongodb";
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "../../../prisma/db";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -32,6 +30,6 @@ export default NextAuth({
   },
   secret: process.env.SECRET,
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
 });
