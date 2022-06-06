@@ -5,7 +5,6 @@ import { Button, List, Box } from "@mantine/core";
 
 export default function AdminWallList(props) {
   const walls = props.items;
-  console.log(walls);
   return (
     <Box sx={{ maxWidth: 500 }} mx="auto">
       <Fragment>
@@ -17,7 +16,7 @@ export default function AdminWallList(props) {
                 leftIcon={<Wall size={24} strokeWidth={1} color={"black"} />}
                 variant="light"
                 component="a"
-                href={`/admin/forms/${walls.gymId}/${wall.id}`}
+                href={`/admin/forms/${wall.gymId}/${wall.id}`}
               >
                 {`${wall.name}`}
               </Button>
