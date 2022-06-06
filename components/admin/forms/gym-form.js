@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Button, Input, Group } from "@mantine/core";
 
 const sendFormData = async (newGymData) => {
-  const response = await fetch("/api/gymData", {
+  const response = await fetch("/api/gyms", {
     method: "POST",
     body: JSON.stringify(newGymData),
     headers: {

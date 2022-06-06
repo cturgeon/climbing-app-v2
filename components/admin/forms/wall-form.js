@@ -4,7 +4,7 @@ import { Button, Input, Group, Box } from "@mantine/core";
 
 const sendFormData = async (updatedGymData) => {
   const gymId = updatedGymData._id;
-  const response = await fetch(`/api/${gymId}`, {
+  const response = await fetch(`/api/gyms/${gymId}`, {
     method: "PUT",
     body: JSON.stringify(updatedGymData),
     headers: {
