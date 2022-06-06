@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const AdminWallList = dynamic(() =>
   import("../../../../components/admin/ui/wall-list")
 );
@@ -9,15 +10,22 @@ const AdminWallForm = dynamic(() =>
 import { prisma } from "../../../../prisma/db";
 
 export default function WallForm(props) {
+  const [walls, setWalls] = useState([]);
   const { gym } = props;
   if (!gym) {
     return <p>Loading....</p>;
   }
 
+  useEffect(() => {
+    fetch(`/api/gyms/${gym.id}`)
+      .then((res) => res.json())
+      .then((data) => setWalls(data.walls));
+  }, []);
+
   return (
     <>
       <AdminWallForm items={gym} />
-      {gym.walls?.length > 0 && <AdminWallList items={gym} />}
+      {walls.length > 0 && <AdminWallList items={walls} />}
     </>
   );
 }

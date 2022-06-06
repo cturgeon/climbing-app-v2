@@ -2,11 +2,11 @@ import { useRef } from "react";
 
 import { Button, Input, Group, Box } from "@mantine/core";
 
-const sendFormData = async (updatedGymData) => {
-  const gymId = updatedGymData._id;
+const sendFormData = async (gymWithNewWall) => {
+  const gymId = gymWithNewWall.gym.id;
   const response = await fetch(`/api/gyms/${gymId}`, {
-    method: "PUT",
-    body: JSON.stringify(updatedGymData),
+    method: "POST",
+    body: JSON.stringify(gymWithNewWall),
     headers: {
       "Content-Type": "application/json",
     },
@@ -25,23 +25,22 @@ export default function AdminWallForm(props) {
 
   const gym = props.items;
 
-  const wallArray = gym.walls;
-
   async function submitHandler(event) {
     event.preventDefault();
 
     const newWall = {
-      id: gym.walls.length,
       name: enteredName.current.value,
       image: enteredImage.current.value,
-      routes: [],
     };
     validateFormInformation(newWall);
 
-    wallArray.push(newWall);
+    const gymWithNewWall = {
+      gym,
+      wall: newWall,
+    };
 
     try {
-      await sendFormData(gym);
+      await sendFormData(gymWithNewWall);
     } catch (error) {
       //TODO set error handling here
     }

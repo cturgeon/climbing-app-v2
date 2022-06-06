@@ -45,7 +45,7 @@ model User {
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   role          String    @default("user")
-  Log           Log[]
+  log           Log[]
   Comment       Comment[]
 }
 
@@ -75,7 +75,7 @@ model Wall {
   name  String
   image String
 
-  Gym   Gym?    @relation(fields: [gymId], references: [id])
+  gym   Gym?    @relation(fields: [gymId], references: [id])
   gymId String? @db.ObjectId
 
   routes Route[]
@@ -91,7 +91,7 @@ model Route {
   description String
   image       String
 
-  Wall   Wall?   @relation(fields: [wallId], references: [id])
+  wall   Wall?   @relation(fields: [wallId], references: [id])
   wallId String? @db.ObjectId
 
   comments Comment[]
@@ -103,6 +103,6 @@ model Comment {
   user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   comment String
 
-  Route   Route?  @relation(fields: [routeId], references: [id])
+  route   Route?  @relation(fields: [routeId], references: [id])
   routeId String? @db.ObjectId
 }
