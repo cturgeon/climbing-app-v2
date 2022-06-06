@@ -4,10 +4,10 @@ import { Fragment } from "react";
 import { Box, Button, List } from "@mantine/core";
 
 import AdminPageComponent from "../../components/admin/admin";
-import { connectToDatabase, getAllGymData } from "../../helpers/db-util";
+import { prisma } from "../../prisma/db";
 
 export default function AdminPage(props) {
-  const { gymData } = props;
+  const { gyms } = props;
 
   const { data: session } = useSession();
 
@@ -22,7 +22,7 @@ export default function AdminPage(props) {
         Add a Gym
       </Button>
       <List style={{ marginBottom: 40 }}>
-        {gymData.map((gym) => (
+        {gyms.map((gym) => (
           <Fragment key={gym._id}>
             <AdminPageComponent items={gym} />
           </Fragment>
@@ -33,18 +33,10 @@ export default function AdminPage(props) {
 }
 
 export async function getStaticProps() {
-  let client;
   try {
-    client = await connectToDatabase();
-    const gymData = await getAllGymData(client, "gym-data", { _id: -1 });
-    return {
-      props: {
-        gymData: JSON.parse(JSON.stringify(gymData)),
-      },
-    };
+    const gyms = await prisma.gym.findMany();
+    return { props: { gyms } };
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    return res.status(500).json({ error: "something went wrong" });
   }
 }

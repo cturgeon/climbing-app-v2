@@ -1,7 +1,4 @@
-import { ObjectId } from "mongodb";
 import dynamic from "next/dynamic";
-
-import { connectToDatabase, getGymById } from "../../../../helpers/db-util";
 const AdminWallList = dynamic(() =>
   import("../../../../components/admin/ui/wall-list")
 );
@@ -9,8 +6,10 @@ const AdminWallForm = dynamic(() =>
   import("../../../../components/admin/forms/wall-form")
 );
 
+import { prisma } from "../../../../prisma/db";
+
 export default function WallForm(props) {
-  const gym = props.gym;
+  const { gym } = props;
   if (!gym) {
     return <p>Loading....</p>;
   }
@@ -18,27 +17,17 @@ export default function WallForm(props) {
   return (
     <>
       <AdminWallForm items={gym} />
-      {gym.walls.length > 0 && <AdminWallList items={gym} />}
+      {gym.walls?.length > 0 && <AdminWallList items={gym} />}
     </>
   );
 }
 
 export async function getServerSideProps(context) {
   const gymId = context.params.gymId;
-  let client;
   try {
-    client = await connectToDatabase();
-    const gymData = await getGymById(client, "gym-data", {
-      _id: ObjectId(gymId),
-    });
-    return {
-      props: {
-        gym: JSON.parse(JSON.stringify(gymData)),
-      },
-    };
+    const gym = await prisma.gym.findUnique({ where: { id: gymId } });
+    return { props: { gym } };
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    return new Error({ message: "could not find gym" });
   }
 }
