@@ -2,11 +2,15 @@ import { useRef, useState } from "react";
 
 import { Button, Group, Input, Select, Box } from "@mantine/core";
 
-const sendFormData = async (updatedGymData) => {
-  const gymId = updatedGymData._id;
-  const response = await fetch(`/api/gyms/${gymId}`, {
-    method: "PUT",
-    body: JSON.stringify(updatedGymData),
+const sendFormData = async (wall, route) => {
+  const gymId = wall.gymId;
+  const wallId = wall.id;
+
+  const dataToBeAdded = { wall, route };
+
+  const response = await fetch(`/api/gyms/${gymId}/${wallId}`, {
+    method: "POST",
+    body: JSON.stringify(dataToBeAdded),
     headers: {
       "Content-Type": "application/json",
     },
@@ -20,7 +24,7 @@ const sendFormData = async (updatedGymData) => {
 };
 
 export default function AdminRouteForm(props) {
-  const { gym, gymWall } = props.items;
+  const { wall } = props.items;
 
   const enteredName = useRef();
   const [gradeValue, setGradeValue] = useState();
@@ -32,7 +36,6 @@ export default function AdminRouteForm(props) {
     event.preventDefault();
 
     const routeData = {
-      id: gymWall.routes.length,
       name: enteredName.current.value,
       color: colorValue,
       grade: gradeValue,
@@ -40,10 +43,8 @@ export default function AdminRouteForm(props) {
       image: enteredImage.current.value,
     };
 
-    gymWall.routes.push(routeData);
-
     try {
-      await sendFormData(gym);
+      await sendFormData(wall, routeData);
     } catch (error) {
       //TODO set error handling here
     }
@@ -88,17 +89,17 @@ export default function AdminRouteForm(props) {
               value={gradeValue}
               onChange={setGradeValue}
               data={[
-                { value: "V0", label: "V0" },
-                { value: "V1", label: "V1" },
-                { value: "V2", label: "V2" },
-                { value: "V3", label: "V3" },
-                { value: "V4", label: "V4" },
-                { value: "V5", label: "V5" },
-                { value: "V6", label: "V6" },
-                { value: "V7", label: "V7" },
-                { value: "V8", label: "V8" },
-                { value: "V9", label: "V9" },
-                { value: "V10", label: "V10" },
+                { value: "0", label: "V0" },
+                { value: "1", label: "V1" },
+                { value: "2", label: "V2" },
+                { value: "3", label: "V3" },
+                { value: "4", label: "V4" },
+                { value: "5", label: "V5" },
+                { value: "6", label: "V6" },
+                { value: "7", label: "V7" },
+                { value: "8", label: "V8" },
+                { value: "9", label: "V9" },
+                { value: "10", label: "V10" },
               ]}
             />
           </div>

@@ -4,15 +4,16 @@ import { Circles } from "tabler-icons-react";
 import { Box, List } from "@mantine/core";
 
 export default function AdminRouteList(props) {
-  const gymWall = props.items;
+  const routes = props.items;
+  console.log(props);
   return (
     <>
       <Box sx={{ maxWidth: 500 }} mx="auto" style={{ marginBottom: 40 }}>
-        <h2>Current routes on {gymWall.name}</h2>
-        {gymWall.routes?.length > 0 && (
+        <h2>Current routes</h2>
+        {routes.length > 0 && (
           <Fragment>
             <List size={20} center>
-              {gymWall.routes.map((route) => (
+              {routes.map((route) => (
                 <List.Item
                   key={route.id}
                   icon={

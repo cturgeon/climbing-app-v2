@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { prisma } from "../../../../../prisma/db";
 
 import dynamic from "next/dynamic";
@@ -11,12 +11,23 @@ const AdminRouteList = dynamic(() =>
 );
 
 export default function WallFormEditPage(props) {
+  const [routes, setRoutes] = useState([]);
   const wall = props;
+  if (!wall) {
+    return <p>Loading...</p>;
+  }
+
+  useEffect(() => {
+    fetch(`/api/gyms/${wall.gymId}/${wall.id}`)
+      .then((res) => res.json())
+      .then((data) => setRoutes(data.routes));
+  }, []);
+
   return (
     <>
       {wall && (
         <Fragment>
-          <AdminRouteList items={wall} />
+          <AdminRouteList items={routes} />
           <AdminRouteForm items={wall} />
         </Fragment>
       )}

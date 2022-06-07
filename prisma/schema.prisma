@@ -46,7 +46,7 @@ model User {
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   role          String    @default("user")
   log           Log[]
-  Comment       Comment[]
+  comment       Comment[]
 }
 
 model Log {
@@ -79,7 +79,7 @@ model Wall {
   gymId String? @db.ObjectId
 
   routes Route[]
-  Log    Log[]
+  log    Log[]
 }
 
 model Route {
@@ -87,7 +87,7 @@ model Route {
 
   name        String
   color       String
-  grade       Int
+  grade       String
   description String
   image       String
 
