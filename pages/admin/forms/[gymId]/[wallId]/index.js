@@ -1,5 +1,6 @@
-import { useEffect, useState, Fragment } from "react";
-import { useRouter } from "next/router";
+import { Fragment } from "react";
+import { prisma } from "../../../../../prisma/db";
+
 import dynamic from "next/dynamic";
 
 const AdminRouteForm = dynamic(() =>
@@ -9,42 +10,28 @@ const AdminRouteList = dynamic(() =>
   import("../../../../../components/admin/ui/route-list")
 );
 
-export default function WallFormEditPage() {
-  const [gymData, setGymData] = useState();
-  const [gymWall, setGymWall] = useState();
-  const router = useRouter();
-  const { gymId } = router.query;
-  const wallId = router.query.wallId;
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      await fetch(`/api/gymData`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.gymData.find((gym) => gym._id === gymId)) {
-            const gym = data.gymData.find((gym) => gym._id === gymId);
-            const gymWall = gym.walls[wallId];
-            setGymData(gym);
-            setGymWall(gymWall);
-            setIsLoading(false);
-          }
-        });
-    };
-    fetchData();
-  }, [gymId, wallId]);
-
-  if (isLoading) return <p>loading...</p>;
-
+export default function WallFormEditPage(props) {
+  const wall = props;
   return (
     <>
-      {gymData && (
+      {wall && (
         <Fragment>
-          <AdminRouteList items={gymWall} />
-          <AdminRouteForm items={{ gymData, gymWall }} />
+          <AdminRouteList items={wall} />
+          <AdminRouteForm items={wall} />
         </Fragment>
       )}
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const wallId = context.params.wallId;
+  try {
+    const result = await prisma.wall.findUnique({
+      where: { id: wallId },
+    });
+    return { props: { wall: result } };
+  } catch (error) {
+    return { props: { hasError: error } };
+  }
 }

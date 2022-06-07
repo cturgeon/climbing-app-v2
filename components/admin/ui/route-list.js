@@ -9,7 +9,7 @@ export default function AdminRouteList(props) {
     <>
       <Box sx={{ maxWidth: 500 }} mx="auto" style={{ marginBottom: 40 }}>
         <h2>Current routes on {gymWall.name}</h2>
-        {gymWall.routes.length > 0 && (
+        {gymWall.routes?.length > 0 && (
           <Fragment>
             <List size={20} center>
               {gymWall.routes.map((route) => (
