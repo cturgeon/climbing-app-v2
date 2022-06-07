@@ -5,7 +5,6 @@ import { Box, List } from "@mantine/core";
 
 export default function AdminRouteList(props) {
   const routes = props.items;
-  console.log(props);
   return (
     <>
       <Box sx={{ maxWidth: 500 }} mx="auto" style={{ marginBottom: 40 }}>
