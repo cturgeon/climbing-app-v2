@@ -16,7 +16,7 @@ export default function SpecificWall(props) {
         <Title order={1} align="center">
           {wall.name}
         </Title>
-        <ClimbList items={routes} />
+        <ClimbList items={{ routes, wall }} />
       </div>
     );
   }

@@ -14,7 +14,8 @@ import ClimbSendModal from "./climb-sends";
 
 // props from ClimbItem <- ClimbList <-[wallId]
 export default function ClimbCard(props) {
-  const { id, name, grade, description, image, color, wall } = props;
+  const { id, name, grade, description, image, color } = props.items.route;
+  const { wall } = props.items.wall;
   const theme = useMantineTheme();
 
   const secondaryColor =
@@ -33,7 +34,7 @@ export default function ClimbCard(props) {
           <Text weight={500}>{name}</Text>
           <Group>
             <Text weight={500}>{color}</Text>
-            <Text weight={500}>{grade}</Text>
+            <Text weight={500}>{`V` + grade}</Text>
           </Group>
         </Group>
 
