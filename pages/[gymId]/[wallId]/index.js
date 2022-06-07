@@ -45,8 +45,6 @@ export async function getStaticPaths() {
       fallback: "blocking",
     };
   } catch (error) {
-    const message = error.message || "getStaticPaths: failed at {url}";
-    log.error({ ...error }, message);
     throw error;
   }
 }
