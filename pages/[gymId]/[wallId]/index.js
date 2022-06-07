@@ -27,14 +27,14 @@ export default function SpecificWall(props) {
 export async function getStaticProps(context) {
   const wallId = context.params.wallId;
   const wall = await prisma.wall.findUnique({ where: { id: wallId } });
-  const routes = await prisma.route.findMany({ where: { wallId: wallId } });
+  const routes = await prisma.route?.findMany({ where: { wallId: wallId } });
   const items = { wall, routes };
   return { props: { items } };
 }
 
 export async function getStaticPaths() {
   try {
-    const wallIds = await prisma.wall.findMany({
+    const wallIds = await prisma.wall?.findMany({
       select: { id: true, gymId: true },
     });
     const paths = wallIds.map((wallId) => ({
