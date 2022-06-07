@@ -1,14 +1,14 @@
-import { Fragment } from 'react';
-import { ObjectId } from 'mongodb';
+import { Fragment } from "react";
 
-import { Group } from '@mantine/core';
+import { Group } from "@mantine/core";
 
-import { connectToDatabase, getGymIds, getGymById } from '../../helpers/db-util';
-import GymHeader from '../../components/ui/gym/gym-header';
-import WallList from '../../components/ui/wall/wall-list';
+import GymHeader from "../../components/ui/gym/gym-header";
+import WallList from "../../components/ui/wall/wall-list";
+
+import { prisma } from "../../prisma/db";
 
 export default function SpecificGym(props) {
-  const gym = props.gym;
+  const { gym, walls } = props;
   if (!gym) {
     return <p>Loading....</p>;
   }
@@ -18,7 +18,7 @@ export default function SpecificGym(props) {
       <Group direction="column" position="center">
         <Fragment>
           <GymHeader items={gym} />
-          <WallList items={gym.walls} />
+          <WallList items={walls} />
         </Fragment>
       </Group>
     </div>
@@ -27,32 +27,21 @@ export default function SpecificGym(props) {
 
 export async function getStaticProps(context) {
   const gymId = context.params.gymId;
-  let client;
   try {
-    client = await connectToDatabase();
-    const gymData = await getGymById(client, 'gym-data', {
-      _id: ObjectId(gymId),
-    });
-    return {
-      props: {
-        gym: JSON.parse(JSON.stringify(gymData)),
-      },
-      revalidate: 60,
-    };
+    const gym = await prisma.gym.findUnique({ where: { id: gymId } });
+    const walls = await prisma.wall.findMany({ where: { gymId: gymId } });
+    const items = { gym, walls };
+    return { props: { items } };
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    return { props: { hasError: error } };
   }
 }
 
 export async function getStaticPaths() {
-  const client = await connectToDatabase();
-  const gymData = await getGymIds(client, 'gym-data');
-  const gymIds = JSON.parse(JSON.stringify(gymData));
-  const paths = gymIds.map((gymId) => ({ params: { gymId: gymId } }));
+  const gymIds = await prisma.gym.findMany({ select: { id: true } });
+  const paths = gymIds.map((gymId) => ({ params: { gymId: gymId.id } }));
   return {
     paths: [...paths],
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }
