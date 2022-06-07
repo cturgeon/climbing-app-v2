@@ -8,7 +8,7 @@ import WallList from "../../components/ui/wall/wall-list";
 import { prisma } from "../../prisma/db";
 
 export default function SpecificGym(props) {
-  const { gym, walls } = props;
+  const { gym, walls } = props.items;
   if (!gym) {
     return <p>Loading....</p>;
   }

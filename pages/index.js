@@ -7,7 +7,6 @@ import GymList from "../components/ui/gym/gym-list";
 import { prisma } from "../prisma/db";
 export default function Home(props) {
   const { gymData } = props;
-  console.log(gymData);
   return (
     <Group direction="column" position="center">
       <Fragment>
