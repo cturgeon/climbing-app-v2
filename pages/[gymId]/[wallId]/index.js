@@ -37,7 +37,7 @@ export async function getStaticPaths() {
     const wallIds = await prisma.wall?.findMany({
       select: { id: true, gymId: true },
     });
-    const paths = wallIds.map((wallId) => ({
+    const paths = wallIds?.map((wallId) => ({
       params: { gymId: wallId.gymId, wallId: wallId.id },
     }));
     return {
