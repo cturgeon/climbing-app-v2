@@ -36,6 +36,6 @@ export async function getServerSideProps(context) {
     const gym = await prisma.gym.findUnique({ where: { id: gymId } });
     return { props: { gym } };
   } catch (error) {
-    return new Error({ message: "could not find gym" });
+    return { props: { hasError: error } };
   }
 }

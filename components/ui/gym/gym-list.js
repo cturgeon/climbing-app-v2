@@ -1,4 +1,4 @@
-import GymItem from "./gym-item";
+import GymCard from "./gym-card";
 
 export default function GymList(props) {
   const { items } = props;
@@ -10,14 +10,7 @@ export default function GymList(props) {
   return (
     <ul style={{ padding: 0 }}>
       {items.map((gym) => (
-        <GymItem
-          key={gym._id}
-          id={gym._id}
-          name={gym.name}
-          description={gym.description}
-          image={gym.image}
-          address={gym.address}
-        />
+        <GymCard key={gym.id} items={gym} />
       ))}
     </ul>
   );

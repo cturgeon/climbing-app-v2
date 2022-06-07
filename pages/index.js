@@ -1,10 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
-import { Text, Group } from '@mantine/core';
+import { Text, Group } from "@mantine/core";
 
-import { connectToDatabase, getAllGymData } from '../helpers/db-util';
-import GymList from '../components/ui/gym/gym-list';
+import GymList from "../components/ui/gym/gym-list";
 
+import { prisma } from "../prisma/db";
 export default function Home(props) {
   const { gymData } = props;
   return (
@@ -21,17 +21,10 @@ export default function Home(props) {
 
 // pre-render since there aren't many gyms to show and they don't change very often
 export async function getStaticProps() {
-  let client;
   try {
-    client = await connectToDatabase();
-    const gymData = await getAllGymData(client, 'gym-data', { _id: -1 });
-    return {
-      props: {
-        gymData: JSON.parse(JSON.stringify(gymData)),
-      },
-    };
+    const gyms = await prisma.gym.findMany();
+    return { props: { gymData: gyms } };
   } catch (error) {
-    console.error(error);
-    return;
+    return { props: { hasError: error } };
   }
 }

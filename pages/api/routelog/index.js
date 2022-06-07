@@ -10,21 +10,15 @@ async function createLog(req, res) {
   }
 
   const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
+    where: { id: session.user.id },
   });
 
-  const log = await prisma.user.update({
-    where: {
-      email: user.email,
-    },
+  const log = await prisma.log.create({
     data: {
-      Log: {
-        create: {
-          attempts: req.body.attempts,
-          grade: req.body.grade,
-          wall: req.body.wallName,
-        },
-      },
+      attempts: req.body.attempts,
+      grade: req.body.grade,
+      wall: { connect: { id: req.body.wall.id } },
+      user: { connect: { id: user.id } },
     },
   });
 

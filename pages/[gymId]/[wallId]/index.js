@@ -1,14 +1,14 @@
-import { ObjectId } from 'mongodb';
+import dynamic from "next/dynamic";
+const ClimbList = dynamic(() =>
+  import("../../../components/ui/climb/climb-list")
+);
 
-import dynamic from 'next/dynamic';
-const ClimbList = dynamic(() => import('../../../components/ui/climb/climb-list'));
+import { Title } from "@mantine/core";
 
-import { Title } from '@mantine/core';
-
-import { connectToDatabase, getGymById } from '../../../helpers/db-util';
+import { prisma } from "../../../prisma/db";
 
 export default function SpecificWall(props) {
-  const { wall } = props;
+  const { wall, routes } = props.items;
 
   if (wall) {
     return (
@@ -16,7 +16,7 @@ export default function SpecificWall(props) {
         <Title order={1} align="center">
           {wall.name}
         </Title>
-        <ClimbList items={wall.routes} wall={wall} />
+        <ClimbList items={{ routes, wall }} />
       </div>
     );
   }
@@ -24,32 +24,23 @@ export default function SpecificWall(props) {
   return <div>This wall does not exist please try another</div>;
 }
 
-// we don't care to pre-render these walls, the data is not that important
-// however this data never really changes. Would be nice to pre-render to feel a bit snappier
-export async function getServerSideProps(context) {
-  const gymId = context.params.gymId;
+export async function getStaticProps(context) {
   const wallId = context.params.wallId;
-  let client;
-  try {
-    client = await connectToDatabase();
-    const gym = await getGymById(client, 'gym-data', {
-      _id: ObjectId(gymId),
-    });
-    const wall = gym.walls[wallId];
-    if (!wall) {
-      return {
-        props: { hasError: true },
-      };
-    }
-    return {
-      props: {
-        wall: wall,
-        revalidate: 60,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+  const wall = await prisma.wall.findUnique({ where: { id: wallId } });
+  const routes = await prisma.route.findMany({ where: { wallId: wallId } });
+  const items = { wall, routes };
+  return { props: { items } };
+}
+
+export async function getStaticPaths() {
+  const wallIds = await prisma.wall.findMany({
+    select: { id: true, gymId: true },
+  });
+  const paths = wallIds.map((wallId) => ({
+    params: { gymId: wallId.gymId, wallId: wallId.id },
+  }));
+  return {
+    paths: [...paths],
+    fallback: "blocking",
+  };
 }

@@ -52,12 +52,14 @@ model User {
 model Log {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now()) @map(name: "created_at")
-  wall      Wall     @relation(fields: [wallId], references: [id])
-  grade     Int
+  grade     String
   attempts  Int
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  wallId    String   @db.ObjectId
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  wallId String @db.ObjectId
+  wall   Wall   @relation(fields: [wallId], references: [id])
 }
 
 model Gym {

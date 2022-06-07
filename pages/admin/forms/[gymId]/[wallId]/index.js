@@ -12,7 +12,7 @@ const AdminRouteList = dynamic(() =>
 
 export default function WallFormEditPage(props) {
   const [routes, setRoutes] = useState([]);
-  const wall = props;
+  const { wall } = props;
   if (!wall) {
     return <p>Loading...</p>;
   }

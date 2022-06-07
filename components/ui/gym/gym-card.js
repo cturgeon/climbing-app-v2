@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export default function GymCard(props) {
-  const { id, name, image, description } = props;
+  const { id, name, image, description } = props.items;
   const theme = useMantineTheme();
 
   const secondaryColor =

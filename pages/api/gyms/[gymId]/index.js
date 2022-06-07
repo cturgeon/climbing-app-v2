@@ -22,7 +22,7 @@ async function addWall(req, res) {
 async function getWalls(req, res) {
   const gymId = req.query.gymId;
   const walls = await prisma.wall.findMany({
-    where: { gymId: gymId.id },
+    where: { gymId: gymId },
   });
   return res.status(201).json({ walls: walls });
 }
