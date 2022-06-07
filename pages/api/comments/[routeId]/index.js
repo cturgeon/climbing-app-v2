@@ -1,8 +1,8 @@
 import { getSession } from "next-auth/react";
 
-import { prisma } from "../../../prisma/db";
+import { prisma } from "../../../../prisma/db";
 
-async function createLog(req, res) {
+async function createComment(req, res) {
   const session = await getSession({ req });
 
   if (!session) {
@@ -13,33 +13,31 @@ async function createLog(req, res) {
     where: { id: session.user.id },
   });
 
-  const log = await prisma.log.create({
+  const comment = await prisma.comment.create({
     data: {
-      attempts: req.body.attempts,
-      grade: req.body.grade,
-      wall: { connect: { id: req.body.wall.id } },
+      comment: req.body.comment,
+      route: { connect: { id: req.body.routeId } },
       user: { connect: { id: user.id } },
     },
   });
 
-  if (log.id) {
-    return res.status(200).json({ message: "Log added" });
+  if (comment.id) {
+    return res.status(200).json({ message: "Comment added" });
   } else {
     return res.status(500).json({ error: "Something went wrong" });
   }
 }
 
-async function getLogs(req, res) {
-  const session = await getSession({ req });
-
+async function getComments(req, res) {
+  const routeId = req.query.routeId;
   if (req.method === "GET") {
     try {
-      const logs = await prisma.log.findMany({
+      const comments = await prisma.comment.findMany({
         where: {
-          userId: session.user.userId,
+          routeId: routeId,
         },
       });
-      return res.status(201).json({ logs: logs });
+      return res.status(201).json({ comments: comments });
     } catch (error) {
       return res.status(500).json({ message: error });
     }
@@ -48,9 +46,9 @@ async function getLogs(req, res) {
 
 export default function handler(req, res) {
   if (req.method === "POST") {
-    return createLog(req, res);
+    return createComment(req, res);
   }
   if (req.method === "GET") {
-    return getLogs(req, res);
+    return getComments(req, res);
   }
 }

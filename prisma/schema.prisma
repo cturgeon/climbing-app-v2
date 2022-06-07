@@ -77,8 +77,8 @@ model Wall {
   name  String
   image String
 
-  gym   Gym?    @relation(fields: [gymId], references: [id])
   gymId String? @db.ObjectId
+  gym   Gym?    @relation(fields: [gymId], references: [id])
 
   routes Route[]
   log    Log[]
@@ -93,18 +93,19 @@ model Route {
   description String
   image       String
 
-  wall   Wall?   @relation(fields: [wallId], references: [id])
   wallId String? @db.ObjectId
+  wall   Wall?   @relation(fields: [wallId], references: [id])
 
   comments Comment[]
 }
 
 model Comment {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   comment String
 
-  route   Route?  @relation(fields: [routeId], references: [id])
   routeId String? @db.ObjectId
+  route   Route?  @relation(fields: [routeId], references: [id])
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
