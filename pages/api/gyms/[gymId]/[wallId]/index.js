@@ -19,7 +19,7 @@ async function createRoute(req, res) {
 async function getRoutes(req, res) {
   const wallId = req.query.wallId;
   const routes = await prisma.route.findMany({
-    where: { wallId: wallId.id },
+    where: { wallId: wallId },
   });
   return res.status(201).json({ routes: routes });
 }
