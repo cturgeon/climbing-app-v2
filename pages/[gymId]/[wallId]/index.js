@@ -24,23 +24,32 @@ export default function SpecificWall(props) {
   return <div>This wall does not exist please try another</div>;
 }
 
-export async function getStaticProps(context) {
+// export async function getStaticProps(context) {
+//   const wallId = context.params.wallId;
+//   const wall = await prisma.wall.findUnique({ where: { id: wallId } });
+//   const routes = await prisma.route?.findMany({ where: { wallId: wallId } });
+//   const items = { wall, routes };
+//   return { props: { items } };
+// }
+
+// export async function getStaticPaths() {
+//   const wallIds = await prisma.wall?.findMany({
+//     select: { id: true, gymId: true },
+//   });
+//   const paths = wallIds?.map((wallId) => ({
+//     params: { gymId: wallId.gymId, wallId: wallId.id },
+//   }));
+//   console.log(paths);
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+
+export async function getServerSideProps(context) {
   const wallId = context.params.wallId;
   const wall = await prisma.wall.findUnique({ where: { id: wallId } });
   const routes = await prisma.route?.findMany({ where: { wallId: wallId } });
   const items = { wall, routes };
   return { props: { items } };
-}
-
-export async function getStaticPaths() {
-  const wallIds = await prisma.wall?.findMany({
-    select: { id: true, gymId: true },
-  });
-  const paths = wallIds?.map((wallId) => ({
-    params: { gymId: wallId.gymId, wallId: wallId.id },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
 }
