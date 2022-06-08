@@ -32,7 +32,7 @@ export default function AdminPage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const gyms = await prisma.gym.findMany();
     return { props: { gyms } };

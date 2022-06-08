@@ -3,8 +3,10 @@ import { Fragment } from "react";
 import { Text, Group } from "@mantine/core";
 
 import GymList from "../components/ui/gym/gym-list";
+import { PrismaClient } from "@prisma/client";
 
-import { prisma } from "../prisma/db";
+// import { prisma } from "../prisma/db";
+
 export default function Home(props) {
   const { gymData } = props;
   return (
@@ -19,9 +21,9 @@ export default function Home(props) {
   );
 }
 
-// pre-render since there aren't many gyms to show and they don't change very often
 export async function getStaticProps() {
   try {
+    const prisma = new PrismaClient();
     const gyms = await prisma.gym.findMany();
     return { props: { gymData: gyms } };
   } catch (error) {
