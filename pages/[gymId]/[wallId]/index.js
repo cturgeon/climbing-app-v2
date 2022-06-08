@@ -33,19 +33,14 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  try {
-    const wallIds = await prisma.wall?.findMany({
-      select: { id: true, gymId: true },
-    });
-    let paths = [];
-    paths = wallIds?.map((wallId) => ({
-      params: { gymId: wallId.gymId, wallId: wallId.id },
-    }));
-    return {
-      paths: [...paths],
-      fallback: "blocking",
-    };
-  } catch (error) {
-    throw error;
-  }
+  const wallIds = await prisma.wall?.findMany({
+    select: { id: true, gymId: true },
+  });
+  const paths = wallIds?.map((wallId) => ({
+    params: { gymId: wallId.gymId, wallId: wallId.id },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
 }
