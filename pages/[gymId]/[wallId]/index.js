@@ -40,7 +40,7 @@ export async function getStaticPaths() {
     params: { gymId: wallId.gymId, wallId: wallId.id },
   }));
   return {
-    paths,
+    paths: [...paths],
     fallback: "blocking",
   };
 }

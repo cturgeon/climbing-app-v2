@@ -29,27 +29,25 @@ export default function AppShellComponent(props) {
         header={
           <Header height={70} p="md">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Grid>
-                <div>
-                  <Text
-                    component="a"
-                    href="/"
-                    align="center"
-                    variant="gradient"
-                    gradient={{
-                      from: "rgba(60, 7, 250, 1)",
-                      to: "rgba(53, 219, 69, 1)",
-                      deg: 20,
-                    }}
-                    size="xl"
-                    weight={800}
-                    style={{ fontFamily: "Greycliff CF, sans-serif" }}
-                    p={30}
-                  >
-                    Climb Logs
-                  </Text>
-                </div>
-              </Grid>
+              <Text
+                component="a"
+                href="/"
+                align="center"
+                variant="gradient"
+                gradient={{
+                  from: "rgba(60, 7, 250, 1)",
+                  to: "rgba(53, 219, 69, 1)",
+                  deg: 20,
+                }}
+                size="xl"
+                weight={800}
+                style={{
+                  fontFamily: "Greycliff CF, sans-serif",
+                  marginLeft: 20,
+                }}
+              >
+                Climb Logs
+              </Text>
               <MediaQuery largerThan="sm" styles={{ display: "none" }}>
                 <Burger
                   opened={opened}
