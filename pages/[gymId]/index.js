@@ -27,14 +27,10 @@ export default function SpecificGym(props) {
 
 export async function getStaticProps(context) {
   const gymId = context.params.gymId;
-  try {
-    const gym = await prisma.gym.findUnique({ where: { id: gymId } });
-    const walls = await prisma.wall.findMany({ where: { gymId: gymId } });
-    const items = { gym, walls };
-    return { props: { items } };
-  } catch (error) {
-    return { props: { hasError: error } };
-  }
+  const gym = await prisma.gym.findUnique({ where: { id: gymId } });
+  const walls = await prisma.wall.findMany({ where: { gymId: gymId } });
+  const items = { gym, walls };
+  return { props: { items } };
 }
 
 export async function getStaticPaths() {

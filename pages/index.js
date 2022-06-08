@@ -22,11 +22,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  try {
-    const prisma = new PrismaClient();
-    const gyms = await prisma.gym.findMany();
-    return { props: { gymData: gyms } };
-  } catch (error) {
-    return { props: { hasError: error } };
-  }
+  const prisma = new PrismaClient();
+  const gyms = await prisma.gym.findMany();
+  return { props: { gymData: gyms } };
 }
