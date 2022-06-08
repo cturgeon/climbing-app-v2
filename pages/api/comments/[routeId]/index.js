@@ -16,6 +16,7 @@ async function createComment(req, res) {
   const comment = await prisma.comment.create({
     data: {
       comment: req.body.comment,
+      name: user.name,
       route: { connect: { id: req.body.routeId } },
       user: { connect: { id: user.id } },
     },

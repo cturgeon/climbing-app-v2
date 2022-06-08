@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Check } from "tabler-icons-react";
 
-import { Modal, Button, Textarea, Box } from "@mantine/core";
+import { Modal, Button, Textarea, Box, List } from "@mantine/core";
 import { updateNotification, showNotification } from "@mantine/notifications";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
@@ -104,13 +104,13 @@ export default function ClimbCommentsModal(props) {
                 Add comment
               </Button>
             </form>
-            <ul>
+            <List size="xs">
               {comments.map((comment) => (
-                <li key={`${comment.id}`}>
-                  <p>{comment.comment}</p>
-                </li>
+                <List.Item key={`${comment.id}`}>
+                  {comment.name}: {comment.comment}
+                </List.Item>
               ))}
-            </ul>
+            </List>
           </Box>
         }
       </Modal>
