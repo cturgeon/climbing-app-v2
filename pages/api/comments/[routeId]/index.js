@@ -39,7 +39,7 @@ async function getComments(req, res) {
       });
       return res.status(201).json({ comments: comments });
     } catch (error) {
-      return res.status(500).json({ message: error });
+      return res.status(500).json({ error: error });
     }
   }
 }

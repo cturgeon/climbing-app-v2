@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 import { Check } from "tabler-icons-react";
 
 import { Modal, Button, Textarea, Box } from "@mantine/core";
@@ -8,6 +9,7 @@ import { updateNotification, showNotification } from "@mantine/notifications";
 export default function ClimbCommentsModal(props) {
   const [opened, setOpened] = useState(false);
   const [comments, setComments] = useState([]);
+  const { data: session } = useSession();
   const enteredText = useRef();
 
   const { id, name, grade, description, image, color } =
@@ -15,6 +17,16 @@ export default function ClimbCommentsModal(props) {
 
   async function submitHandler(event) {
     event.preventDefault();
+    if (!session) {
+      showNotification({
+        title: `Please log in`,
+        message: "Cannot add your comment",
+        autoClose: 4000,
+        color: "red",
+      });
+      enteredText.current.value = "";
+      return;
+    }
 
     showNotification({
       id: "load-data",
@@ -39,7 +51,7 @@ export default function ClimbCommentsModal(props) {
         },
       });
 
-      fetch(`/api/comments/${id}`)
+      await fetch(`/api/comments/${id}`)
         .then((res) => res.json())
         .then((data) => setComments(data.comments));
 
@@ -56,6 +68,7 @@ export default function ClimbCommentsModal(props) {
         title: "Bummer!",
         message: "Failed to add your comment",
         color: "red",
+        autoClose: 4000,
       });
     }
     enteredText.current.value = "";

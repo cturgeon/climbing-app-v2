@@ -37,6 +37,19 @@ export default function ClimbLogModal(props) {
 
   async function submitHandler(event) {
     event.preventDefault();
+
+    if (!session) {
+      showNotification({
+        title: `Please log in`,
+        message: "Cannot add your climb",
+        autoClose: 4000,
+        color: "red",
+      });
+      clearHandler();
+      setOpened(false);
+      return;
+    }
+
     showNotification({
       id: "load-data",
       loading: true,
@@ -173,7 +186,6 @@ export default function ClimbLogModal(props) {
         color="blue"
         style={{ marginTop: 14 }}
         onClick={() => setOpened(true)}
-        disabled={!session}
         fullWidth
       >
         Log Climb
