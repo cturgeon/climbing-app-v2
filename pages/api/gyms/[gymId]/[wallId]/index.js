@@ -13,7 +13,7 @@ async function createRoute(req, res) {
       wall: { connect: { id: wall.id } },
     },
   });
-  return res.status(200).json({ route: routeData });
+  return res.status(201).json({ route: routeData });
 }
 
 async function getRoutes(req, res) {

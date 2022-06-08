@@ -32,10 +32,6 @@ export default function WallForm(props) {
 
 export async function getServerSideProps(context) {
   const gymId = context.params.gymId;
-  try {
-    const gym = await prisma.gym.findUnique({ where: { id: gymId } });
-    return { props: { gym } };
-  } catch (error) {
-    return { props: { hasError: error } };
-  }
+  const gym = await prisma.gym.findUnique({ where: { id: gymId } });
+  return { props: { gym } };
 }

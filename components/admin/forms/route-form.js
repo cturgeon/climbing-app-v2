@@ -24,7 +24,7 @@ const sendFormData = async (wall, route) => {
 };
 
 export default function AdminRouteForm(props) {
-  const { wall } = props.items;
+  const wall = props.items;
 
   const enteredName = useRef();
   const [gradeValue, setGradeValue] = useState();

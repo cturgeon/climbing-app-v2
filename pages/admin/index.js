@@ -22,7 +22,7 @@ export default function AdminPage(props) {
         Add a Gym
       </Button>
       <List style={{ marginBottom: 40 }}>
-        {gyms.map((gym) => (
+        {gyms?.map((gym) => (
           <Fragment key={gym._id}>
             <AdminPageComponent items={gym} />
           </Fragment>
@@ -33,10 +33,6 @@ export default function AdminPage(props) {
 }
 
 export async function getServerSideProps() {
-  try {
-    const gyms = await prisma.gym.findMany();
-    return { props: { gyms } };
-  } catch (error) {
-    return res.status(500).json({ error: "something went wrong" });
-  }
+  const gyms = await prisma.gym.findMany();
+  return { props: { gyms } };
 }

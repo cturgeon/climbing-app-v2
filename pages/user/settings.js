@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 
 import dynamic from "next/dynamic";
 const HomeGymSettings = dynamic(() =>
@@ -15,9 +15,13 @@ export default function UserSettingsPage() {
       <>
         <h3>Send some feedback</h3>
         <form>
-          <label>Comment</label>
-          <textarea></textarea>
-          <button>submit</button>
+          <div>
+            <label>Comment</label>
+          </div>
+          <div>
+            <textarea></textarea>
+          </div>
+          <Button>submit</Button>
         </form>
       </>
       <>
@@ -29,6 +33,10 @@ export default function UserSettingsPage() {
             <Button component="a" href="/admin">
               Admin Stuff
             </Button>
+
+            <Text size="xs">
+              Note: I do not own any of the images on this website, thanks!
+            </Text>
           </>
         )}
       </>

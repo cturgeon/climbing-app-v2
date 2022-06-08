@@ -19,9 +19,9 @@ export default function HomeGymSettings() {
   }
 
   useEffect(() => {
-    fetch("/api/gymData")
+    fetch("/api/gyms")
       .then((res) => res.json())
-      .then((data) => setGymData(data.gymData));
+      .then((data) => setGymData(data.gyms));
   }, []);
 
   if (!gymData) {

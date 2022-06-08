@@ -37,12 +37,8 @@ export default function WallFormEditPage(props) {
 
 export async function getServerSideProps(context) {
   const wallId = context.params.wallId;
-  try {
-    const result = await prisma.wall.findUnique({
-      where: { id: wallId },
-    });
-    return { props: { wall: result } };
-  } catch (error) {
-    return { props: { hasError: error } };
-  }
+  const result = await prisma.wall.findUnique({
+    where: { id: wallId },
+  });
+  return { props: { wall: result } };
 }
