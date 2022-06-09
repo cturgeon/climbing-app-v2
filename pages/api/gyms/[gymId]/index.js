@@ -27,6 +27,7 @@ async function getWalls(req, res) {
   return res.status(201).json({ walls: walls });
 }
 
+// handles wall information
 export default function handler(req, res) {
   if (req.method === "POST") {
     return addWall(req, res);

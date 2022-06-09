@@ -8,11 +8,11 @@ const ClimbList = dynamic(() =>
 import { prisma } from "../../../prisma/db";
 
 export default function SpecificWall(props) {
-  const { wall, routes } = props.items;
+  const { gym, wall, routes } = props.items;
 
   if (wall) {
     return (
-      <div style={{ padding: 0 }}>
+      <div>
         <Title order={1} align="center">
           {wall.name}
         </Title>
@@ -25,22 +25,27 @@ export default function SpecificWall(props) {
 }
 
 export async function getStaticProps(context) {
+  const gymId = context.params.gymId;
   const wallId = context.params.wallId;
+
+  const gym = await prisma.gym.findUnique({ where: { id: gymId } });
   const wall = await prisma.wall.findUnique({ where: { id: wallId } });
+
   const routes = await prisma.route?.findMany({ where: { wallId: wallId } });
-  const items = { wall, routes };
+  const items = { gym, wall, routes };
   return { props: { items } };
 }
 
 export async function getStaticPaths() {
-  const wallIds = await prisma.wall?.findMany({
-    select: { id: true, gymId: true },
-  });
-  const paths = wallIds.map((wallId) => ({
-    params: { gymId: wallId.gymId, wallId: wallId.id },
-  }));
+  // const wallIds = await prisma.wall?.findMany({
+  //   select: { id: true, gymId: true },
+  // });
+  // const paths = wallIds?.map((wallId) => ({
+  //   params: { gymId: wallId.gymId, wallId: wallId.id },
+  // }));
+
   return {
-    paths,
+    paths: [],
     fallback: "blocking",
   };
 }
