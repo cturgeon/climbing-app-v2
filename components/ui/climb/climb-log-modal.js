@@ -66,7 +66,7 @@ export default function ClimbLogModal(props) {
         wall,
       };
 
-      fetch("/api/routelog", {
+      fetch("/api/climbs/log", {
         method: "POST",
         body: JSON.stringify(logData),
         headers: {

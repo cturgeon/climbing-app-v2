@@ -43,7 +43,7 @@ export default function ClimbCommentsModal(props) {
         routeId: id,
       };
 
-      await fetch(`/api/comments/${id}`, {
+      await fetch(`/api/climbs/comments/${id}`, {
         method: "POST",
         body: JSON.stringify(commentData),
         headers: {
@@ -51,7 +51,7 @@ export default function ClimbCommentsModal(props) {
         },
       });
 
-      await fetch(`/api/comments/${id}`)
+      await fetch(`/api/climbs/comments/${id}`)
         .then((res) => res.json())
         .then((data) => setComments(data.comments));
 
@@ -75,7 +75,7 @@ export default function ClimbCommentsModal(props) {
   }
 
   useEffect(() => {
-    fetch(`/api/comments/${id}`)
+    fetch(`/api/climbs/comments/${id}`)
       .then((res) => res.json())
       .then((data) => setComments(data.comments));
   }, []);
