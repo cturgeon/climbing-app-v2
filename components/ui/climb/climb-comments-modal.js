@@ -105,11 +105,12 @@ export default function ClimbCommentsModal(props) {
               </Button>
             </form>
             <List size="xs">
-              {comments.map((comment) => (
-                <List.Item key={`${comment.id}`}>
-                  {comment.name}: {comment.comment}
-                </List.Item>
-              ))}
+              {comments &&
+                comments.map((comment) => (
+                  <List.Item key={`${comment.id}`}>
+                    {comment.name}: {comment.comment}
+                  </List.Item>
+                ))}
             </List>
           </Box>
         }
