@@ -11,11 +11,11 @@ export default function ClimbSendModal(props) {
     props.items.items.route;
   const wall = props.items.items.wall;
 
-  // useEffect(() => {
-  //   const climberIdsByRoute = fetch("/api/routelog")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // }, []);
+  useEffect(() => {
+    fetch(`/api/climbs/sends/${id}`)
+      .then((res) => res.json())
+      .then((data) => setClimbers(data.users));
+  }, [opened]);
 
   return (
     <>
@@ -24,19 +24,13 @@ export default function ClimbSendModal(props) {
         onClose={() => setOpened(false)}
         title="List of crushers! 🧗"
       >
-        {
-          <Box>
-            {climbers && (
-              <>
-                <List>
-                  {climbers.map((climber) => {
-                    <List.Item>{climber.name}</List.Item>;
-                  })}
-                </List>
-              </>
-            )}
-          </Box>
-        }
+        <Box>
+          <List>
+            {climbers?.map((climber) => (
+              <List.Item key={climber.user}>{climber.user.name} </List.Item>
+            ))}
+          </List>
+        </Box>
       </Modal>
       <Button
         color="teal"
