@@ -11,11 +11,11 @@ export default function ClimbSendModal(props) {
     props.items.items.route;
   const wall = props.items.items.wall;
 
-  useEffect(() => {
-    const climberIdsByRoute = fetch("/api/routelog")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+  // useEffect(() => {
+  //   const climberIdsByRoute = fetch("/api/routelog")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, []);
 
   return (
     <>

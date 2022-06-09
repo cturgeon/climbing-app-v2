@@ -37,6 +37,9 @@ async function getComments(req, res) {
         where: {
           routeId: routeId,
         },
+        orderBy: {
+          id: "desc",
+        },
       });
       return res.status(201).json({ comments: comments });
     } catch (error) {
