@@ -1,25 +1,29 @@
 import { prisma } from "../../../../prisma/db";
 
 async function getSends(req, res) {
-  const routeId = req.query.routeId;
-  const listOfUserIdsWhoSentRoute = await prisma.log.findMany({
-    where: {
-      routeId: routeId,
-    },
-    distinct: ["userId"],
-    select: {
-      user: {
-        select: {
-          name: true,
+  try {
+    const routeId = req.query.routeId;
+    const listOfUserIdsWhoSentRoute = await prisma.log.findMany({
+      where: {
+        routeId: routeId,
+      },
+      distinct: ["userId"],
+      select: {
+        user: {
+          select: {
+            name: true,
+          },
         },
       },
-    },
-    orderBy: {
-      id: "desc",
-    },
-  });
+      orderBy: {
+        id: "desc",
+      },
+    });
 
-  return res.json({ users: listOfUserIdsWhoSentRoute });
+    return res.status(201).json({ users: listOfUserIdsWhoSentRoute });
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
 }
 
 export default function handler(req, res) {
