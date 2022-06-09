@@ -1,9 +1,10 @@
-import { useSession } from "next-auth/react";
 import { Fragment } from "react";
+import { useSession } from "next-auth/react";
 
 import { Box, Button, List } from "@mantine/core";
 
 import AdminPageComponent from "../../components/admin/admin";
+
 import { prisma } from "../../prisma/db";
 
 export default function AdminPage(props) {

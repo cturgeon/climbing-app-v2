@@ -1,14 +1,14 @@
 import { Fragment, useEffect, useState } from "react";
-import { prisma } from "../../../../../prisma/db";
 
 import dynamic from "next/dynamic";
-
 const AdminRouteForm = dynamic(() =>
   import("../../../../../components/admin/forms/route-form")
 );
 const AdminRouteList = dynamic(() =>
   import("../../../../../components/admin/ui/route-list")
 );
+
+import { prisma } from "../../../../../prisma/db";
 
 export default function WallFormEditPage(props) {
   const [routes, setRoutes] = useState([]);

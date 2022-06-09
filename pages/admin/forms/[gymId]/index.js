@@ -1,5 +1,6 @@
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+
+import dynamic from "next/dynamic";
 const AdminWallList = dynamic(() =>
   import("../../../../components/admin/ui/wall-list")
 );

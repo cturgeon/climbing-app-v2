@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 const HomeGymSettings = dynamic(() =>
   import("../../components/settings/home-gym")
 );
+
 export default function UserSettingsPage() {
   const { data: session } = useSession();
 

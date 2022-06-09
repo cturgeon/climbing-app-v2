@@ -1,8 +1,6 @@
-import { useSession } from "next-auth/react";
-import { PrismaClient } from "@prisma/client";
-import { getSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 
-const prisma = new PrismaClient();
+import { prisma } from "../../prisma/db";
 
 export default function UserLogsPage(props) {
   const { data: session, loading } = useSession();

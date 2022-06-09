@@ -1,5 +1,6 @@
-import { Button, Box, Text } from "@mantine/core";
 import { getProviders, signIn } from "next-auth/react";
+
+import { Button, Box } from "@mantine/core";
 
 export default function SignIn({ providers }) {
   return (

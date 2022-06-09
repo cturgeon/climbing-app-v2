@@ -1,12 +1,12 @@
 import { Fragment } from "react";
+import { useSession } from "next-auth/react";
 
-import { Text, Group, Button, Grid } from "@mantine/core";
+import { Text, Group } from "@mantine/core";
 
 import GymList from "../components/ui/gym/gym-list";
 import LearnModal from "../components/about/learn-modal";
 
 import { prisma } from "../prisma/db";
-import { useSession } from "next-auth/react";
 
 export default function Home(props) {
   const { gymData } = props;

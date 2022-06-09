@@ -1,9 +1,9 @@
+import { Title } from "@mantine/core";
+
 import dynamic from "next/dynamic";
 const ClimbList = dynamic(() =>
   import("../../../components/ui/climb/climb-list")
 );
-
-import { Title } from "@mantine/core";
 
 import { prisma } from "../../../prisma/db";
 
