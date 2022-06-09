@@ -17,6 +17,7 @@ async function createLog(req, res) {
     data: {
       attempts: req.body.attempts,
       grade: req.body.grade,
+      route: { connect: { id: req.body.routeId } },
       wall: { connect: { id: req.body.wall.id } },
       user: { connect: { id: user.id } },
     },

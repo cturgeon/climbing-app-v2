@@ -64,6 +64,7 @@ export default function ClimbLogModal(props) {
         attempts,
         grade,
         wall,
+        routeId: id,
       };
 
       fetch("/api/climbs/log", {

@@ -60,6 +60,9 @@ model Log {
 
   wallId String @db.ObjectId
   wall   Wall   @relation(fields: [wallId], references: [id])
+
+  routeId String @db.ObjectId
+  route   Route  @relation(fields: [routeId], references: [id])
 }
 
 model Gym {
@@ -97,6 +100,7 @@ model Route {
   wall   Wall?   @relation(fields: [wallId], references: [id])
 
   comments Comment[]
+  Log      Log[]
 }
 
 model Comment {
