@@ -10,7 +10,6 @@ import {
   Text,
   Button,
   SimpleGrid,
-  Grid,
   Aside,
   Box,
 } from "@mantine/core";

@@ -1,24 +1,40 @@
-import { Fragment, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Modal, Button, Group, Text, Box } from "@mantine/core";
-import { Check } from "tabler-icons-react";
+import { Modal, Button, List, Box } from "@mantine/core";
 
 // props from ClimbCard <- ClimbItem <- ClimbList <- [wallId]
 export default function ClimbSendModal(props) {
   const [opened, setOpened] = useState(false);
+  const [climbers, setClimbers] = useState([]);
 
-  const { id, name, grade, description, image } = props.items;
+  const { id, name, grade, description, image, color } =
+    props.items.items.route;
+  const wall = props.items.items.wall;
+
+  useEffect(() => {
+    const climberIdsByRoute = fetch("/api/routelog")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
 
   return (
     <>
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
-        title="List of crushers!"
+        title="List of crushers! 🧗"
       >
         {
           <Box>
-            <Text> Name 🧗</Text>
+            {climbers && (
+              <>
+                <List>
+                  {climbers.map((climber) => {
+                    <List.Item>{climber.name}</List.Item>;
+                  })}
+                </List>
+              </>
+            )}
           </Box>
         }
       </Modal>

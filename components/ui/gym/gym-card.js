@@ -1,19 +1,8 @@
-import {
-  Card,
-  Image,
-  Text,
-  Button,
-  Group,
-  useMantineTheme,
-  Grid,
-} from "@mantine/core";
+import { Card, Image, Text, useMantineTheme } from "@mantine/core";
 
 export default function GymCard(props) {
   const { id, name, image, description } = props.items;
   const theme = useMantineTheme();
-
-  const secondaryColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
     <>
