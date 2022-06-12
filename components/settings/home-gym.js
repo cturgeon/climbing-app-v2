@@ -30,7 +30,7 @@ export default function HomeGymSettings() {
 
   const selectData = [];
   gymData.forEach((gym) =>
-    selectData.push({ value: `${gym._id}`, label: `${gym.name}` })
+    selectData.push({ value: `${gym.id}`, label: `${gym.name}` })
   );
   return (
     <>

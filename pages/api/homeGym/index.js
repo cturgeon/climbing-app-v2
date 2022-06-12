@@ -18,11 +18,7 @@ async function setHomeGym(req, res) {
       email: user.email,
     },
     data: {
-      Gym: {
-        create: {
-          gymId: req.body,
-        },
-      },
+      gymId: req.body,
     },
   });
 
