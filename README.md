@@ -5,5 +5,6 @@ Much of the development is still in progress...
 
 Up next:
 
-- [ ] 'to-be' list for climbs
+- [ ] thumbnails for climbs - click to enlarge
+- [ ] 'want-to-climb' list
 - [ ] 4x4 with (climb selector, timers, more?...)

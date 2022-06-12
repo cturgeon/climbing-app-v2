@@ -47,11 +47,11 @@ export default function AppShellComponent(props) {
               >
                 Climb Logs
               </Text>
-              <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+              <MediaQuery largerThan="lg" styles={{ display: "none" }}>
                 <Burger
                   opened={opened}
                   onClick={() => setOpened((o) => !o)}
-                  size="sm"
+                  size="md"
                   color={theme.colors.gray[6]}
                   mr="xl"
                 />
@@ -64,9 +64,9 @@ export default function AppShellComponent(props) {
         aside={
           <Aside
             p="md"
-            hiddenBreakpoint="sm"
+            hiddenBreakpoint="lg"
             hidden={!opened}
-            width={{ sm: 200, lg: 300 }}
+            width={{ lg: 400 }}
           >
             <Aside.Section grow>
               {!session ? (
