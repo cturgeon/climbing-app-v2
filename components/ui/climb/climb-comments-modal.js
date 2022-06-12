@@ -104,11 +104,11 @@ export default function ClimbCommentsModal(props) {
                 Add comment
               </Button>
             </form>
-            <List size="xs">
+            <List size="md">
               {comments &&
                 comments.map((comment) => (
                   <List.Item key={`${comment.id}`}>
-                    {comment.name}: {comment.comment}
+                    {comment.name.split(" ")[0]} said: {comment.comment}
                   </List.Item>
                 ))}
             </List>

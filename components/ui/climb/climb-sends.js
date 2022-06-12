@@ -27,7 +27,9 @@ export default function ClimbSendModal(props) {
         <Box>
           <List>
             {climbers?.map((climber) => (
-              <List.Item key={climber.user}>{climber.user.name} </List.Item>
+              <List.Item key={climber.user}>
+                {climber.user.name.split(" ")[0]}{" "}
+              </List.Item>
             ))}
           </List>
         </Box>
