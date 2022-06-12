@@ -15,8 +15,6 @@ export default function UserHomePage(props) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
   const gymId = session?.user.gymId;
-  console.log(gymId);
-
   if (gymId) {
     return {
       redirect: {
