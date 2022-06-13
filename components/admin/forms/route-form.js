@@ -77,6 +77,7 @@ export default function AdminRouteForm(props) {
                 { value: "Green", label: "Green" },
                 { value: "Blue", label: "Blue" },
                 { value: "Purple", label: "Purple" },
+                { value: "Pink", label: "Pink" },
                 { value: "Gray", label: "Gray" },
                 { value: "Brown", label: "Brown" },
                 { value: "White", label: "White" },
