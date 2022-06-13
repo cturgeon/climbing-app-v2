@@ -52,6 +52,8 @@ export default function AdminRouteForm(props) {
     enteredName.current.value = "";
     enteredDescription.current.value = "";
     enteredImage.current.value = "";
+    setColorValue("");
+    setGradeValue("");
   }
   return (
     <>
@@ -70,15 +72,15 @@ export default function AdminRouteForm(props) {
               onChange={setColorValue}
               data={[
                 { value: "Red", label: "Red" },
+                { value: "Orage", label: "Orage" },
                 { value: "Yellow", label: "Yellow" },
-                { value: "Black", label: "Black" },
+                { value: "Green", label: "Green" },
                 { value: "Blue", label: "Blue" },
                 { value: "Purple", label: "Purple" },
-                { value: "Brown", label: "Brown" },
-                { value: "Orage", label: "Orage" },
-                { value: "Green", label: "Green" },
                 { value: "Gray", label: "Gray" },
+                { value: "Brown", label: "Brown" },
                 { value: "White", label: "White" },
+                { value: "Black", label: "Black" },
               ]}
             />
           </div>
