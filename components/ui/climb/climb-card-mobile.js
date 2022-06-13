@@ -31,22 +31,19 @@ export default function ClimbCardMobile(props) {
             </Grid.Col>
             <Grid.Col span={16}>
               <Grid columns={20}>
-                <Grid.Col span={1} my={5} p={0}>
+                <Grid.Col span={1} my={5}>
                   <Circles size={18} strokeWidth={3} color={`${color}`} />
                 </Grid.Col>
-                <Grid.Col span={1} my={2} offset={1} p={0}>
+                <Grid.Col span={1} my={2} offset={1}>
                   <Text weight={500}>{`V` + grade}</Text>
                 </Grid.Col>
-                <Grid.Col span={14} align="right">
+                <Grid.Col span={16} align="right" my={2} pr={10}>
                   <Text lineClamp={1} weight={500}>
                     {name}
                   </Text>
                 </Grid.Col>
               </Grid>
-              <Text lineClamp={1} size="sm" align="center">
-                {description}
-              </Text>
-              <Grid sx={{ width: 150 }} justify="space-around" mx="auto">
+              <Grid sx={{ width: "80%" }} justify="space-around" mx="auto">
                 <div>
                   <ClimbCommentsModal mobileStyles items={props} />
                 </div>
@@ -54,7 +51,7 @@ export default function ClimbCardMobile(props) {
                   <ClimbSendModal mobileStyles items={props} />
                 </div>
               </Grid>
-              <Grid sx={{ width: 150 }} mx="auto">
+              <Grid sx={{ width: "80%" }} mx="auto">
                 <ClimbLogModal mobileStyles items={props} />
               </Grid>
             </Grid.Col>
