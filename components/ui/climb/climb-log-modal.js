@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { Check } from "tabler-icons-react";
+import { Check, Circles } from "tabler-icons-react";
 
 import {
   Modal,
@@ -104,38 +104,17 @@ export default function ClimbLogModal(props) {
         {
           <>
             <form onSubmit={submitHandler}>
-              <Grid justify="space-between">
-                <Title>{name}</Title>
-                <Group>
-                  <Text
-                    style={{
-                      marginLeft: 10,
-                      display: "flex",
-                      alignItems: "flex-end",
-                      bottom: 0,
-                    }}
-                  >
-                    {color}
-                  </Text>
-                  <Text
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-end",
-                      bottom: 0,
-                    }}
-                  >
-                    {grade}
-                  </Text>
-                </Group>
-                <Text
-                  style={{
-                    marginBottom: 20,
-                  }}
-                >
-                  {description}
-                </Text>
-              </Grid>
-              <Text align="center">Attempts:</Text>
+              <Title align="center">{name}</Title>
+              <Group position="center">
+                <Circles size={30} strokeWidth={3} color={`${color}`} />
+              </Group>
+              <Group position="center">
+                <Text>{color}</Text>
+                <Text>V{grade}</Text>
+              </Group>
+              <Text align="center" mt="xl">
+                Attempts:
+              </Text>
               <Text align="center" size="xl" weight={600}>
                 {attempts === 0 ? "Flash" : attempts}
               </Text>

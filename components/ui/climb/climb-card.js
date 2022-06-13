@@ -1,3 +1,4 @@
+import { Circles } from "tabler-icons-react";
 import {
   Card,
   Image,
@@ -33,6 +34,7 @@ export default function ClimbCard(props) {
         >
           <Text weight={500}>{name}</Text>
           <Group>
+            <Circles size={20} strokeWidth={3} color={`${color}`} />
             <Text weight={500}>{color}</Text>
             <Text weight={500}>{`V` + grade}</Text>
           </Group>
