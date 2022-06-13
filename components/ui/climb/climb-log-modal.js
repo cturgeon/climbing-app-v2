@@ -21,6 +21,7 @@ export default function ClimbLogModal(props) {
   const { id, name, grade, description, image, color } =
     props.items.items.route;
   const wall = props.items.items.wall;
+  const mobileStyles = props?.mobileStyles;
 
   function increaseAttempts() {
     setAttempts(++attempts);
@@ -162,14 +163,27 @@ export default function ClimbLogModal(props) {
           </>
         }
       </Modal>
-      <Button
-        color="blue"
-        style={{ marginTop: 14 }}
-        onClick={() => setOpened(true)}
-        fullWidth
-      >
-        Log Climb
-      </Button>
+      {!mobileStyles ? (
+        <Button
+          color="blue"
+          style={{ marginTop: 14 }}
+          onClick={() => setOpened(true)}
+          fullWidth
+        >
+          Log Climb
+        </Button>
+      ) : (
+        <>
+          <Button
+            color="blue"
+            style={{ marginTop: 14 }}
+            onClick={() => setOpened(true)}
+            fullWidth
+          >
+            Log Climb
+          </Button>
+        </>
+      )}
     </>
   );
 }

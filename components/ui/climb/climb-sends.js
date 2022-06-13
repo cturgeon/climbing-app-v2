@@ -17,6 +17,8 @@ export default function ClimbSendModal(props) {
       .then((data) => setClimbers(data.users));
   }, [opened]);
 
+  const mobileStyles = props?.mobileStyles;
+
   return (
     <>
       <Modal
@@ -34,15 +36,31 @@ export default function ClimbSendModal(props) {
           </List>
         </Box>
       </Modal>
-      <Button
-        color="teal"
-        style={{ marginTop: 14 }}
-        onClick={() => setOpened(true)}
-        fullWidth
-        variant="outline"
-      >
-        Sends
-      </Button>
+      {!mobileStyles ? (
+        <>
+          <Button
+            color="teal"
+            style={{ marginTop: 14 }}
+            onClick={() => setOpened(true)}
+            fullWidth
+            variant="outline"
+          >
+            sends
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button
+            color="teal"
+            variant="outline"
+            onClick={() => setOpened(true)}
+            compact
+            style={{ marginTop: 10 }}
+          >
+            sends
+          </Button>
+        </>
+      )}
     </>
   );
 }

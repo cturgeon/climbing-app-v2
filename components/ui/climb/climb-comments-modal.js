@@ -15,6 +15,8 @@ export default function ClimbCommentsModal(props) {
   const { id, name, grade, description, image, color } =
     props.items.items.route;
 
+  const mobileStyles = props?.mobileStyles;
+
   async function submitHandler(event) {
     event.preventDefault();
     if (!session) {
@@ -115,15 +117,31 @@ export default function ClimbCommentsModal(props) {
           </Box>
         }
       </Modal>
-      <Button
-        color="teal"
-        style={{ marginTop: 14 }}
-        onClick={() => setOpened(true)}
-        fullWidth
-        variant="outline"
-      >
-        Comments
-      </Button>
+      {!mobileStyles ? (
+        <>
+          <Button
+            color="teal"
+            style={{ marginTop: 14 }}
+            onClick={() => setOpened(true)}
+            fullWidth
+            variant="outline"
+          >
+            Comments
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button
+            color="teal"
+            variant="outline"
+            onClick={() => setOpened(true)}
+            compact
+            style={{ marginTop: 10 }}
+          >
+            Comments
+          </Button>
+        </>
+      )}
     </>
   );
 }

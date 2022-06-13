@@ -21,10 +21,6 @@ export default function ClimbCardMobile(props) {
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
-  const buttonStyles = {
-    compact: true,
-  };
-
   return (
     <Box sx={{ maxWidth: "90%" }} mx="auto" style={{ marginBottom: 10 }}>
       <Card shadow="sm" withBorder sx={{ maxHeight: 150 }}>
@@ -34,26 +30,33 @@ export default function ClimbCardMobile(props) {
               <Image src={image} alt={id} />
             </Grid.Col>
             <Grid.Col span={16}>
-              <Group>
-                <Text weight={500}>{name}</Text>
-                <Group>
+              <Grid columns={20}>
+                <Grid.Col span={1} my={5} p={0}>
                   <Circles size={18} strokeWidth={3} color={`${color}`} />
-                  <Text weight={500}>{color}</Text>
+                </Grid.Col>
+                <Grid.Col span={1} my={2} offset={1} p={0}>
                   <Text weight={500}>{`V` + grade}</Text>
-                </Group>
-              </Group>
-              <Text size="sm">{description}</Text>
-              <Grid justify="space-around">
-                <div style={{ width: 110 }}>
-                  <ClimbCommentsModal items={props} />
+                </Grid.Col>
+                <Grid.Col span={14} align="right">
+                  <Text lineClamp={1} weight={500}>
+                    {name}
+                  </Text>
+                </Grid.Col>
+              </Grid>
+              <Text lineClamp={1} size="sm" align="center">
+                {description}
+              </Text>
+              <Grid sx={{ width: 150 }} justify="space-around" mx="auto">
+                <div>
+                  <ClimbCommentsModal mobileStyles items={props} />
                 </div>
-                <div style={{ width: 110 }}>
-                  <ClimbSendModal items={props} />
+                <div>
+                  <ClimbSendModal mobileStyles items={props} />
                 </div>
               </Grid>
-              <div align="center">
-                <ClimbLogModal items={props} />
-              </div>
+              <Grid sx={{ width: 150 }} mx="auto">
+                <ClimbLogModal mobileStyles items={props} />
+              </Grid>
             </Grid.Col>
           </Grid>
         </Card.Section>
