@@ -72,7 +72,7 @@ export default function AdminRouteForm(props) {
               onChange={setColorValue}
               data={[
                 { value: "Red", label: "Red" },
-                { value: "Orage", label: "Orage" },
+                { value: "Orange", label: "Orange" },
                 { value: "Yellow", label: "Yellow" },
                 { value: "Green", label: "Green" },
                 { value: "Blue", label: "Blue" },
