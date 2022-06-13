@@ -5,6 +5,7 @@ Much of the development is still in progress...
 
 Up next:
 
+- [ ] selecting (drawer, footer?) walls on route page
 - [ ] comments feedback linked to database
 - [ ] delete functions for admin forms
 - [ ] thumbnails for climbs - click to enlarge
