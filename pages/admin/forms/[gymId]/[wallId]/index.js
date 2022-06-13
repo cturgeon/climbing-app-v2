@@ -27,7 +27,7 @@ export default function WallFormEditPage(props) {
     <>
       {wall && (
         <Fragment>
-          <AdminRouteList items={routes} />
+          <AdminRouteList items={{ routes, wall }} />
           <AdminRouteForm items={wall} />
         </Fragment>
       )}

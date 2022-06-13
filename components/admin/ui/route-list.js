@@ -4,11 +4,11 @@ import { Circles } from "tabler-icons-react";
 import { Box, List } from "@mantine/core";
 
 export default function AdminRouteList(props) {
-  const routes = props.items;
+  const { routes, wall } = props.items;
   return (
     <>
       <Box sx={{ maxWidth: 500 }} mx="auto" style={{ marginBottom: 40 }}>
-        <h2>Current routes</h2>
+        <h2>Current routes on {wall.name}</h2>
         {routes.length > 0 && (
           <Fragment>
             <List size={20} center>
