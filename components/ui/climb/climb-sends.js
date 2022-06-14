@@ -45,7 +45,7 @@ export default function ClimbSendModal(props) {
             fullWidth
             variant="outline"
           >
-            sends
+            Sends
           </Button>
         </>
       ) : (
@@ -57,7 +57,7 @@ export default function ClimbSendModal(props) {
             compact
             style={{ marginTop: 10 }}
           >
-            sends
+            Sends
           </Button>
         </>
       )}
