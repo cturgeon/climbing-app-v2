@@ -23,26 +23,24 @@ export default function ClimbCardMobile(props) {
 
   return (
     <Box sx={{ maxWidth: "90%" }} mx="auto" style={{ marginBottom: 10 }}>
-      <Card shadow="sm" withBorder sx={{ maxHeight: 150 }}>
+      <Card shadow="sm" withBorder sx={{ height: 150 }}>
         <Card.Section>
           <Grid columns={24}>
             <Grid.Col span={8}>
-              <Image src={image} alt={id} />
+              <Card.Section>
+                <Image src={image} alt={id} />
+              </Card.Section>
             </Grid.Col>
             <Grid.Col span={16}>
-              <Grid columns={20}>
-                <Grid.Col span={1} my={5}>
-                  <Circles size={18} strokeWidth={3} color={`${color}`} />
-                </Grid.Col>
-                <Grid.Col span={1} my={2} offset={1}>
-                  <Text weight={500}>{`V` + grade}</Text>
-                </Grid.Col>
-                <Grid.Col span={16} align="right" my={2} pr={10}>
-                  <Text lineClamp={1} weight={500}>
-                    {name}
-                  </Text>
-                </Grid.Col>
-              </Grid>
+              <Group position="center">
+                <Circles size={18} strokeWidth={3} color={`${color}`} />
+                <Text weight={500}>{`V` + grade}</Text>
+              </Group>
+              <Group position="center">
+                <Text lineClamp={1} weight={500}>
+                  {name}
+                </Text>
+              </Group>
               <Grid sx={{ width: "80%" }} justify="space-around" mx="auto">
                 <div>
                   <ClimbCommentsModal mobileStyles items={props} />
