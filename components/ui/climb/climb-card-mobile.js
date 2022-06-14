@@ -12,6 +12,7 @@ import {
 import ClimbCommentsModal from "./climb-comments-modal";
 import ClimbLogModal from "./climb-log-modal";
 import ClimbSendModal from "./climb-sends";
+import MobileImageModal from "./mobile-image";
 
 export default function ClimbCardMobile(props) {
   const { id, name, grade, description, image, color } = props.items.route;
@@ -28,7 +29,8 @@ export default function ClimbCardMobile(props) {
           <Grid columns={24}>
             <Grid.Col span={8}>
               <Card.Section>
-                <Image src={image} alt={id} />
+                <MobileImageModal items={{ image, id }} />
+                {/* <Image src={image} alt={id} /> */}
               </Card.Section>
             </Grid.Col>
             <Grid.Col span={16}>
