@@ -23,8 +23,12 @@ export default function ClimbCardMobile(props) {
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <Box sx={{ maxWidth: "90%" }} mx="auto" style={{ marginBottom: 10 }}>
-      <Card shadow="sm" withBorder sx={{ height: 150 }}>
+    <Box
+      sx={{ maxWidth: "90%", minHeight: 150 }}
+      mx="auto"
+      style={{ marginBottom: 10 }}
+    >
+      <Card shadow="sm" withBorder>
         <Card.Section>
           <Grid columns={24}>
             <Grid.Col span={8}>
