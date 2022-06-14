@@ -45,7 +45,7 @@ export default function AppShellComponent(props) {
                   marginLeft: 20,
                 }}
               >
-                Climb Logs
+                ClimbLogs
               </Text>
               <MediaQuery largerThan="lg" styles={{ display: "none" }}>
                 <Burger
