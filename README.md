@@ -5,9 +5,10 @@ Much of the development is still in progress...
 
 Up next:
 
+- [ ] visualizations for climb stats
 - [ ] selecting (drawer, footer?) walls on route page
 - [ ] comments feedback linked to database
 - [ ] delete functions for admin forms
-- [-] thumbnails for climbs - click to enlarge
+- [x] thumbnails for climbs - click to enlarge
 - [ ] 'want-to-climb' list
 - [ ] 4x4 with (climb selector, timers, more?...)

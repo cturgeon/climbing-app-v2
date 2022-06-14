@@ -24,7 +24,7 @@ export default function App({
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
-        // theme={{ fontFamily: "Open-sans" }}
+        theme={{ fontFamily: "Helvetica" }}
       >
         <SessionProvider session={session}>
           <NotificationsProvider>
