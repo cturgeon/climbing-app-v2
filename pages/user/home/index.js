@@ -1,6 +1,9 @@
 import { getSession } from "next-auth/react";
 
-import HomeGymSettings from "../../../components/settings/home-gym";
+import dynamic from "next/dynamic";
+const HomeGymSettings = dynamic(() =>
+  import("../../../components/settings/home-gym")
+);
 
 export default function UserHomePage(props) {
   return (
