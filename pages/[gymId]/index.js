@@ -18,7 +18,11 @@ export default function SpecificGym(props) {
       <Group direction="column" position="center">
         <Fragment>
           <GymHeader items={gym} />
-          <WallList items={walls} />
+          {walls.length !== 0 ? (
+            <WallList items={walls} />
+          ) : (
+            <h3>Walls coming soon!</h3>
+          )}
         </Fragment>
       </Group>
     </div>

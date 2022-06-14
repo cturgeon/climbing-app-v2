@@ -8,6 +8,6 @@ Up next:
 - [ ] selecting (drawer, footer?) walls on route page
 - [ ] comments feedback linked to database
 - [ ] delete functions for admin forms
-- [ ] thumbnails for climbs - click to enlarge
+- [-] thumbnails for climbs - click to enlarge
 - [ ] 'want-to-climb' list
 - [ ] 4x4 with (climb selector, timers, more?...)
