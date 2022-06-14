@@ -21,7 +21,11 @@ export default function App({
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        // theme={{ fontFamily: "Open-sans" }}
+      >
         <SessionProvider session={session}>
           <NotificationsProvider>
             <AppShellComponent>

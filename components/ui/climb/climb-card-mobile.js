@@ -24,11 +24,11 @@ export default function ClimbCardMobile(props) {
 
   return (
     <Box
-      sx={{ maxWidth: "90%", minHeight: 150 }}
+      sx={{ maxWidth: "90%", maxHeight: 150 }}
       mx="auto"
       style={{ marginBottom: 10 }}
     >
-      <Card shadow="sm" withBorder>
+      <Card shadow="sm" withBorder sx={{ height: 150 }}>
         <Card.Section>
           <Grid columns={24}>
             <Grid.Col span={8}>
