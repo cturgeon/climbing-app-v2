@@ -34,7 +34,6 @@ export default function ClimbCardMobile(props) {
             <Grid.Col span={8}>
               <Card.Section>
                 <MobileImageModal items={{ image, id }} />
-                {/* <Image src={image} alt={id} /> */}
               </Card.Section>
             </Grid.Col>
             <Grid.Col span={16}>
