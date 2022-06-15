@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { Modal, Image } from "@mantine/core";
+import { Box, Modal } from "@mantine/core";
+import Image from "next/image";
 
 export default function MobileImageModal(props) {
   const [opened, setOpened] = useState(false);
@@ -14,9 +15,25 @@ export default function MobileImageModal(props) {
         padding="0"
         withCloseButton={false}
       >
-        <Image src={image} alt={id} onClick={() => setOpened(false)} />
+        <Box style={{ position: "relative" }}>
+          <Image
+            layout="responsive"
+            height={"100%"}
+            width={"100%"}
+            src={image}
+            alt={id}
+            onClick={() => setOpened(false)}
+          />
+        </Box>
       </Modal>
-      <Image src={image} alt={id} onClick={() => setOpened(true)} />
+      <Image
+        layout="responsive"
+        height={"100%"}
+        width={"100%"}
+        src={image}
+        alt={id}
+        onClick={() => setOpened(true)}
+      />
     </>
   );
 }

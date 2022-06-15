@@ -24,14 +24,14 @@ export default function ClimbCardMobile(props) {
 
   return (
     <Box
-      sx={{ maxWidth: "90%", maxHeight: 150 }}
+      sx={{ maxHeight: 150, minWidth: "90%" }}
       mx="auto"
       style={{ marginBottom: 10 }}
     >
       <Card shadow="sm" withBorder sx={{ height: 150 }}>
         <Card.Section>
           <Grid columns={24}>
-            <Grid.Col span={8}>
+            <Grid.Col span={8} style={{ position: "relative" }}>
               <Card.Section>
                 <MobileImageModal items={{ image, id }} />
               </Card.Section>
