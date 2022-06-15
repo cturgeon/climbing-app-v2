@@ -26,14 +26,18 @@ export default function MobileImageModal(props) {
           />
         </Box>
       </Modal>
-      <Image
-        layout="responsive"
-        height={"100%"}
-        width={"100%"}
-        src={image}
-        alt={id}
-        onClick={() => setOpened(true)}
-      />
+      <Box style={{ position: "relative" }}>
+        <Image
+          layout="responsive"
+          // sizes={"100vw"}
+          height={150}
+          width={"100vw"}
+          objectFit="cover"
+          src={image}
+          alt={id}
+          onClick={() => setOpened(true)}
+        />
+      </Box>
     </>
   );
 }

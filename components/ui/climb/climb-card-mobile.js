@@ -31,7 +31,7 @@ export default function ClimbCardMobile(props) {
       <Card shadow="sm" withBorder sx={{ height: 150 }}>
         <Card.Section>
           <Grid columns={24}>
-            <Grid.Col span={8} style={{ position: "relative" }}>
+            <Grid.Col span={8} p={0}>
               <Card.Section>
                 <MobileImageModal items={{ image, id }} />
               </Card.Section>
