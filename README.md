@@ -5,6 +5,7 @@ Much of the development is still in progress...
 
 Up next:
 
+- [ ] migrate all images from mantine to next/image
 - [ ] visualizations for climb stats
 - [ ] selecting (drawer, footer?) walls on route page
 - [ ] comments feedback linked to database
