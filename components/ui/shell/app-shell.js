@@ -76,7 +76,7 @@ export default function AppShellComponent(props) {
                   <Button component="a" href="/user/home">
                     View Home Gym
                   </Button>
-                  <Button component="a" href="/user/logs">
+                  <Button component="a" href="/user/logs" disabled>
                     View Climb Logs
                   </Button>
                   <Button component="a" href="/user/settings">
