@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Button, Select } from "@mantine/core";
+import { Box, Button, Grid, Select } from "@mantine/core";
+import { GridIcon } from "@modulz/radix-icons";
 
 export default function HomeGymSettings() {
   const [gym, setGym] = useState();
@@ -34,17 +35,24 @@ export default function HomeGymSettings() {
   );
   return (
     <>
-      <h2>Set home gym</h2>
-      <form onSubmit={submitHandler}>
-        <label>Select Gym</label>
-        <Select
-          required
-          value={gym}
-          onChange={setGym}
-          data={selectData}
-        ></Select>
-        <Button type="submit">Set Gym</Button>
-      </form>
+      <Box mx="auto" sx={{ maxWidth: "70%" }}>
+        <h2>Set home gym</h2>
+        <Grid columns={24}>
+          <Grid.Col span={12}>
+            <Select
+              required
+              value={gym}
+              onChange={setGym}
+              data={selectData}
+            ></Select>
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <Button onClick={submitHandler} type="submit">
+              Set Gym
+            </Button>
+          </Grid.Col>
+        </Grid>
+      </Box>
     </>
   );
 }
