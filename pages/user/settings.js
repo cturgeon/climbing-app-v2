@@ -18,8 +18,18 @@ export default function UserSettingsPage() {
     event.preventDefault();
 
     showNotification({
-      title: `Error Happened :(`,
-      message: "Cannot add your climb",
+      id: "load-data",
+      loading: true,
+      title: `Loading`,
+      message: "Sending your comment to our admins",
+      autoClose: false,
+      disallowClose: true,
+    });
+
+    updateNotification({
+      title: `This is a tragedy :(`,
+      message:
+        "Something is wrong on our end, email casey.turgeon@gmail.com. Thanks!",
       autoClose: 4000,
       color: "red",
     });
