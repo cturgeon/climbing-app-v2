@@ -15,7 +15,7 @@ export default function UserSettingsPage() {
   const { data: session } = useSession();
   const commentData = useRef();
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
 
     showNotification({
@@ -27,12 +27,23 @@ export default function UserSettingsPage() {
       disallowClose: true,
     });
 
+    if (!session) {
+      updateNotification({
+        id: "load-data",
+        title: `Please Sign in to add feedback`,
+        message:
+          "If you would like you can email casey.turgeon@gmail.com. Thanks!",
+        autoClose: 6000,
+        color: "red",
+      });
+    }
+
     try {
       const comment = {
         comment: commentData.current.value,
       };
 
-      fetch("/api/admin/feedback", {
+      await fetch("/api/admin/feedback", {
         method: "POST",
         body: JSON.stringify(comment),
         headers: {
