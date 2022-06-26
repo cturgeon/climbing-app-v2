@@ -1,14 +1,29 @@
+import { useRef } from "react";
 import { useSession } from "next-auth/react";
 
-import { Button, Text } from "@mantine/core";
+import { Button, Group, Text } from "@mantine/core";
 
 import dynamic from "next/dynamic";
 const HomeGymSettings = dynamic(() =>
   import("../../components/settings/home-gym")
 );
 
+import { showNotification, updateNotification } from "@mantine/notifications";
+
 export default function UserSettingsPage() {
   const { data: session } = useSession();
+  const [setComments] = useRef();
+
+  function submitHandler(event) {
+    event.preventDefault();
+
+    showNotification({
+      title: `Error Happened :(`,
+      message: "Cannot add your climb",
+      autoClose: 4000,
+      color: "red",
+    });
+  }
 
   return (
     <>
@@ -19,10 +34,10 @@ export default function UserSettingsPage() {
           <div>
             <label>Comment</label>
           </div>
-          <div>
-            <textarea></textarea>
-          </div>
-          <Button>submit</Button>
+          <Group>
+            <textarea ref={setComments}></textarea>
+            <Button onClick={submitHandler}>submit</Button>
+          </Group>
         </form>
       </>
       <>
