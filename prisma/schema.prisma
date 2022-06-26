@@ -35,19 +35,20 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  role          String    @default("user")
+  createdAt     DateTime   @default(now()) @map(name: "created_at")
+  updatedAt     DateTime   @updatedAt @map(name: "updated_at")
+  role          String     @default("user")
   log           Log[]
   comment       Comment[]
   gymId         String?
+  feedback      feedback[]
 }
 
 model Log {
@@ -114,4 +115,12 @@ model Comment {
   name   String
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model feedback {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  comment String
+
+  userId String? @db.ObjectId
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
