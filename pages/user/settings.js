@@ -30,7 +30,6 @@ export default function UserSettingsPage() {
     try {
       const comment = {
         comment: commentData.current.value,
-        user: session?.user.id,
       };
 
       fetch("/api/admin/feedback", {
