@@ -84,7 +84,6 @@ export default function AppShellComponent(props) {
                 </SimpleGrid>
               )}
             </Aside.Section>
-            <Aside.Section>{}</Aside.Section>
           </Aside>
         }
         styles={(theme) => ({

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Box, Button, Grid, Select } from "@mantine/core";
+import { Button, Grid, Select } from "@mantine/core";
 import { GridIcon } from "@modulz/radix-icons";
 
 export default function HomeGymSettings() {
@@ -35,24 +35,22 @@ export default function HomeGymSettings() {
   );
   return (
     <>
-      <Box mx="auto" sx={{ maxWidth: "70%" }}>
-        <h2>Set home gym</h2>
-        <Grid columns={24}>
-          <Grid.Col span={12}>
-            <Select
-              required
-              value={gym}
-              onChange={setGym}
-              data={selectData}
-            ></Select>
-          </Grid.Col>
-          <Grid.Col span={12}>
-            <Button onClick={submitHandler} type="submit">
-              Set Gym
-            </Button>
-          </Grid.Col>
-        </Grid>
-      </Box>
+      <h2>Set home gym</h2>
+      <Grid columns={24}>
+        <Grid.Col span={12}>
+          <Select
+            required
+            value={gym}
+            onChange={setGym}
+            data={selectData}
+          ></Select>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Button onClick={submitHandler} type="submit">
+            Set Gym
+          </Button>
+        </Grid.Col>
+      </Grid>
     </>
   );
 }
