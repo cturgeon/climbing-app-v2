@@ -1,13 +1,5 @@
 import { Circles } from "tabler-icons-react";
-import {
-  Card,
-  Image,
-  Text,
-  Group,
-  useMantineTheme,
-  Grid,
-  Box,
-} from "@mantine/core";
+import { Card, Text, Group, Grid, Box } from "@mantine/core";
 
 import ClimbCommentsModal from "./climb-comments-modal";
 import ClimbLogModal from "./climb-log-modal";
@@ -17,10 +9,6 @@ import MobileImageModal from "./mobile-image";
 export default function ClimbCardMobile(props) {
   const { id, name, grade, description, image, color } = props.items.route;
   const { wall } = props.items.wall;
-  const theme = useMantineTheme();
-
-  const secondaryColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
     <Box
