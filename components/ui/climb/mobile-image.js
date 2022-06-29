@@ -15,11 +15,9 @@ export default function MobileImageModal(props) {
         padding="0"
         withCloseButton={false}
       >
-        <Box style={{ position: "relative" }}>
+        <Box style={{ position: "relative", minHeight: 500 }}>
           <Image
-            layout="responsive"
-            height={"100%"}
-            width={"100%"}
+            layout="fill"
             src={image}
             alt={id}
             onClick={() => setOpened(false)}
