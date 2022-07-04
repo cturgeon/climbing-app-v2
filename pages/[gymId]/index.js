@@ -14,7 +14,7 @@ export default function SpecificGym(props) {
   }
 
   return (
-    <div>
+    <>
       <Group direction="column" position="center">
         <Fragment>
           <GymHeader items={gym} />
@@ -25,7 +25,7 @@ export default function SpecificGym(props) {
           )}
         </Fragment>
       </Group>
-    </div>
+    </>
   );
 }
 
