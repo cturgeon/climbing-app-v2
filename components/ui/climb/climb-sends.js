@@ -15,7 +15,7 @@ export default function ClimbSendModal(props) {
     fetch(`/api/climbs/sends/${id}`)
       .then((res) => res.json())
       .then((data) => setClimbers(data.users));
-  }, [setOpened]);
+  }, [setClimbers]);
 
   const mobileStyles = props?.mobileStyles;
 
