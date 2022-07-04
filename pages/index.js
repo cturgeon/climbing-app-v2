@@ -13,15 +13,15 @@ export default function Home(props) {
   const { data: session, status } = useSession();
 
   return (
-    <Group direction="column" position="center">
-      <Fragment>
+    <>
+      <Group direction="column" position="center">
         {checkStatus(status) && <LearnModal />}
         <Text size="md" transform="capitalize">
           Click a gym to get logging!
         </Text>
-        <GymList items={gymData} />
-      </Fragment>
-    </Group>
+      </Group>
+      <GymList items={gymData} />
+    </>
   );
 }
 

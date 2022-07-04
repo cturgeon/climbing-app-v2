@@ -7,21 +7,30 @@ export default function GymCard(props) {
 
   return (
     <>
-      <Card shadow="sm" p="lg" component="a" href={`/${id}`}>
-        <Card.Section>
-          <Image src={image} alt={id} layout="fill" />
-        </Card.Section>
-        <Text
-          align="center"
-          weight={500}
-          style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
-        >
-          {name}
-        </Text>
-        <Text align="center" weight={300}>
-          {description}
-        </Text>
-      </Card>
+      <div style={{ maxWidth: 700, margin: "auto" }}>
+        <Card shadow="sm" component="a" href={`/${id}`}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              paddingBottom: "80%",
+            }}
+          >
+            <Image src={image} alt={id} layout="fill" />
+          </div>
+          <Card.Section></Card.Section>
+          <Text
+            align="center"
+            weight={500}
+            style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
+          >
+            {name}
+          </Text>
+          <Text align="center" weight={300}>
+            {description}
+          </Text>
+        </Card>
+      </div>
     </>
   );
 }
