@@ -1,4 +1,3 @@
-import { Box } from "@mantine/core";
 import WallItem from "./wall-item";
 
 export default function WallList(props) {
@@ -14,7 +13,7 @@ export default function WallList(props) {
     return <p>loading... </p>;
   }
   return (
-    <Box>
+    <>
       <ul style={{ padding: 0 }}>
         {walls.map((wall) => (
           <WallItem
@@ -25,6 +24,6 @@ export default function WallList(props) {
           />
         ))}
       </ul>
-    </Box>
+    </>
   );
 }

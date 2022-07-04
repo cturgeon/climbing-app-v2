@@ -1,12 +1,6 @@
-import {
-  Card,
-  Image,
-  Text,
-  Button,
-  Group,
-  useMantineTheme,
-  Box,
-} from "@mantine/core";
+import { Card, Text, Button, Group, useMantineTheme, Box } from "@mantine/core";
+
+import Image from "next/image";
 
 export default function WallCard(props) {
   const { id, name, image, gymId } = props;
@@ -28,7 +22,15 @@ export default function WallCard(props) {
           <Text align="center" weight={500} size="lg">
             Go to the {`${name}`} wall
           </Text>
-          <Image src={image} alt={id} fit="contain" />
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              paddingBottom: "80%",
+            }}
+          >
+            <Image src={image} alt={id} layout="fill" />
+          </div>
         </Card.Section>
       </Card>
     </>
