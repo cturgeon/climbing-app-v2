@@ -95,9 +95,7 @@ export default function AppShellComponent(props) {
           },
         })}
       >
-        <Box sx={{ maxWidth: 700 }} mx="auto">
-          {props.children}
-        </Box>
+        {props.children}
       </AppShell>
     </>
   );
