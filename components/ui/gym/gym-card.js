@@ -1,4 +1,5 @@
-import { Card, Image, Text, useMantineTheme } from "@mantine/core";
+import { Card, Text, useMantineTheme } from "@mantine/core";
+import Image from "next/image";
 
 export default function GymCard(props) {
   const { id, name, image, description } = props.items;
@@ -8,7 +9,7 @@ export default function GymCard(props) {
     <>
       <Card shadow="sm" p="lg" component="a" href={`/${id}`}>
         <Card.Section>
-          <Image src={image} alt={id} />
+          <Image src={image} alt={id} layout="fill" />
         </Card.Section>
         <Text
           align="center"
