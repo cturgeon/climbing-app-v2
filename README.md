@@ -5,11 +5,16 @@ Much of the development is still in progress...
 
 Up next:
 
-- [ ] migrate all images from mantine to next/image
 - [ ] visualizations for climb stats
+- [ ] sort by grade
+
+When I can get to it:
+
+- [ ] migrate all images from mantine to next/image
 - [ ] selecting (drawer, footer?) walls on route page
-- [ ] comments feedback linked to database
+
+idk sometime in the future:
+
 - [ ] delete functions for admin forms
-- [x] thumbnails for climbs - click to enlarge
 - [ ] 'want-to-climb' list
 - [ ] 4x4 with (climb selector, timers, more?...)
