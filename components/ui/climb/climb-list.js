@@ -13,19 +13,19 @@ export default function ClimbList(props) {
   const { routes, wall } = props.items;
   const { width } = useViewportSize();
 
-  const [routesData, setRoutesData] = useState([]);
+  const [routesData, setRoutesData] = useState(routes);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    setRoutesData(routes);
-    console.log(routesData);
-  }, [routesData]);
+    setRoutesData(routesData);
+  }, [update]);
 
   const sortHandler = () => {
+    // TODO left to right, high to low, low to high
     const sortedRouteData = routes.sort((a, b) => {
-      return a.grade - b.grade;
+      return update ? a.grade - b.grade : b.grade - a.grade;
     });
-    setRoutesData(sortedRouteData);
-    console.log(routesData);
+    setUpdate((prevState) => !prevState);
   };
 
   return (
