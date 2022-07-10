@@ -70,13 +70,20 @@ export default function AppShellComponent(props) {
           >
             <Aside.Section grow>
               {!session ? (
-                <LoginButton />
+                <SimpleGrid>
+                  <Button disabled>View Home Gym</Button>
+                  <Button disabled>View Climb Logs</Button>
+                  <Button disabled>Settings</Button>
+                  <LoginButton />
+                </SimpleGrid>
               ) : (
                 <SimpleGrid>
                   <Button component="a" href="/user/home">
                     View Home Gym
                   </Button>
-                  <Button disabled>View Climb Logs</Button>
+                  <Button component="a" href="/user/logs">
+                    View Climb Logs
+                  </Button>
                   <Button component="a" href="/user/settings">
                     Settings
                   </Button>
