@@ -7,13 +7,13 @@ export default function GymCard(props) {
 
   return (
     <>
-      <div style={{ maxWidth: 700, margin: "auto" }}>
+      <div style={{ maxWidth: 700, margin: "auto", paddingBottom: 50 }}>
         <Card shadow="sm" component="a" href={`/${id}`}>
           <div
             style={{
               position: "relative",
               width: "100%",
-              paddingBottom: "80%",
+              paddingBottom: "auto",
             }}
           >
             <Image src={image} alt={id} layout="fill" />
