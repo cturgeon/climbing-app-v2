@@ -1,4 +1,5 @@
 import { useSession, getSession } from "next-auth/react";
+import BarChartContainer from "../../components/log-visuals/bar-chart";
 
 import { prisma } from "../../prisma/db";
 
@@ -11,20 +12,9 @@ export default function UserLogsPage(props) {
   }
 
   return (
-    <div>
-      <h1>See your stats below!</h1>
-      {userLogData.length > 0 && (
-        <ul>
-          {userLogData.map((log) => (
-            <li key={log.id}>
-              <p>
-                {log.grade} : {log.attempts} attempts
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <BarChartContainer items={userLogData} />
+    </>
   );
 }
 
