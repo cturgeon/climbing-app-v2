@@ -13,7 +13,7 @@ export default function GymCard(props) {
             style={{
               position: "relative",
               width: "100%",
-              paddingBottom: "auto",
+              paddingBottom: "70%",
             }}
           >
             <Image src={image} alt={id} layout="fill" />
