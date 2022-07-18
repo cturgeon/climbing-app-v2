@@ -5,12 +5,11 @@ Much of the development is still in progress...
 
 Up next:
 
-- [ ] visualizations for climb stats
-- [ ] sort by grade
+- [ ] add context for screen width on route pages
+- [ ] tune up climb log visuals
 
 When I can get to it:
 
-- [ ] migrate all images from mantine to next/image
 - [ ] selecting (drawer, footer?) walls on route page
 
 idk sometime in the future:
