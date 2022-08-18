@@ -5,6 +5,7 @@ Much of the development is still in progress...
 
 Up next:
 
+- [ ] add notification on set gym in settings page
 - [ ] add context for screen width on route pages
 - [ ] tune up climb log visuals
 
