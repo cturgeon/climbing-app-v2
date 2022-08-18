@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart, XYPlot, HorizontalGridLines } from "react-d3-components";
+import { BarChart } from "react-d3-components";
 
 export default function BarChartContainer(props) {
   const climbData = props.items;
