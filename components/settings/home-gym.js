@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-
 import { Button, Grid, Select } from "@mantine/core";
-import { GridIcon } from "@modulz/radix-icons";
 
 export default function HomeGymSettings() {
   const [gym, setGym] = useState();
