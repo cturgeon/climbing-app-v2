@@ -26,12 +26,14 @@ export default function HomeGymSettings() {
         "Content-Type": "application/json",
       },
     });
+
     updateNotification({
       id: "load-data",
       title: "Saved",
       message: "Your home gym preference has been saved!",
       autoClose: 4000,
     });
+
     setGym(null);
   }
 
@@ -46,9 +48,11 @@ export default function HomeGymSettings() {
   }
 
   const selectData = [];
+
   gymData.forEach((gym) =>
     selectData.push({ value: `${gym.id}`, label: `${gym.name}` })
   );
+
   return (
     <>
       <h2>Set home gym</h2>
