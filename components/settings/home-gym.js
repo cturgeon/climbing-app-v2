@@ -19,13 +19,23 @@ export default function HomeGymSettings() {
       disallowClose: true,
     });
 
-    await fetch("/api/homeGym", {
-      method: "POST",
-      body: JSON.stringify(gym),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      await fetch("/api/homeGym", {
+        method: "POST",
+        body: JSON.stringify(gym),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      updateNotification({
+        id: "load-data",
+        title: "Error",
+        message: "Could not update you home gym",
+        autoClose: 4000,
+        color: "red",
+      });
+    }
 
     updateNotification({
       id: "load-data",
