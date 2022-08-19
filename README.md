@@ -10,6 +10,7 @@ Up next:
 
 When I can get to it:
 
+- [ ] change: route pics show the start, modal shows whole climb
 - [ ] selecting (drawer, footer?) walls on route page
 
 idk sometime in the future:
