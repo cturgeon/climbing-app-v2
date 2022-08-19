@@ -1,18 +1,36 @@
 import { useEffect, useState } from "react";
 import { Button, Grid, Select } from "@mantine/core";
 
+import { showNotification, updateNotification } from "@mantine/notifications";
+
 export default function HomeGymSettings() {
   const [gym, setGym] = useState();
   const [gymData, setGymData] = useState();
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
-    fetch("/api/homeGym", {
+
+    showNotification({
+      id: "load-data",
+      loading: true,
+      title: `Loading`,
+      message: "Sending your comment to our admins",
+      autoClose: false,
+      disallowClose: true,
+    });
+
+    await fetch("/api/homeGym", {
       method: "POST",
       body: JSON.stringify(gym),
       headers: {
         "Content-Type": "application/json",
       },
+    });
+    updateNotification({
+      id: "load-data",
+      title: "Saved",
+      message: "Your home gym preference has been saved!",
+      autoClose: 4000,
     });
     setGym(null);
   }
