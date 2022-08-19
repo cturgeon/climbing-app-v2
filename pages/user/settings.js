@@ -32,7 +32,7 @@ export default function UserSettingsPage() {
         id: "load-data",
         title: `Please Sign in to add feedback`,
         message:
-          "If you would like you can email casey.turgeon@gmail.com. Thanks!",
+          "If you would like, you can email casey.turgeon@gmail.com. Thanks!",
         autoClose: 6000,
         color: "red",
       });
