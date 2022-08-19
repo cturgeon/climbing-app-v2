@@ -1,22 +1,23 @@
 import React from "react";
 import { BarChart } from "react-d3-components";
+import { Text, Title } from "@mantine/core";
 
 export default function BarChartContainer(props) {
   const climbData = props.items;
   const data = dataHandler(climbData);
   return (
-    <h1 className="title">
+    <Title className="title">
       Climbs
-      <p className="age">
+      <Text className="age">
         <span /> Grade
-      </p>
+      </Text>
       <BarChart
         data={data}
         width={347}
-        height={307}
-        margin={{ top: 10, bottom: 50, left: 50, right: 0 }}
+        height={345}
+        margin={{ top: 20, bottom: 50, left: 50, right: 0 }}
       />
-    </h1>
+    </Title>
   );
 }
 
